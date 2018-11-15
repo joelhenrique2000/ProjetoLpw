@@ -5,15 +5,10 @@
  */
 package br.edu.ifpe.servicon.model.entidades;
 
-import controller.LoginBean;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
 
 /**
  *
@@ -33,8 +28,6 @@ public class pato {
         this.nome = nome;
     }
     
-        public String logar() {
-            return "index.xhtml";
-    }
+    
     
 }

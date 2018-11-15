@@ -1,12 +1,56 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Facelet Title</title>
+        <h:outputStylesheet name="./css/normalize.css"/>
+        <h:outputStylesheet name="./css/paginaCadastrar.css"/>
     </h:head>
     <h:body>
-        Hello from Facelets
+        
+        <div class="container-desktop">
+            <div class="container-desktop-logo">
+                <h:graphicImage class="logo" value="/resources/images/blogy_branco.png" />
+            </div>
+            
+            <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+
+            <p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
+                <p:graphicImage name="./images/spinner.gif" />
+            </p:dialog>
+            
+            <h:form id="form-cadastrar" class="container">
+                <div class="container-logo">
+                    <h:graphicImage class="logo logo-mobile" value="/resources/images/blogy_branco.png" />
+                    <p:outputLabel class="header-text logo-desktop" value="Cadastrar" />
+                </div>
+                <div class="container-input">
+                    <h:panelGrid class="asopjdasdop">
+                        <h:panelGroup>
+                            <p:inputText id="nome" required="true" placeholder="Digite seu nome" value="#{beanCadastrar.usuario.nome}" />
+                        </h:panelGroup>
+                        <h:panelGroup>
+                            <p:inputText id="email" required="true" placeholder="Digite seu e-mail" value="#{beanCadastrar.usuario.email}" >
+                                <!--<f:validator validatorId="com.mkyong.EmailValidator" />-->
+                            </p:inputText>
+                        </h:panelGroup>
+                        <h:panelGroup>
+                            <p:inputText type="password" id="senha" required="true" placeholder="Digite sua senha" value="#{beanCadastrar.usuario.senha}"/>
+                        </h:panelGroup>
+                        <h:panelGroup>
+                            <p:inputText type="password" id="senhaNovamente" required="true" placeholder="Digite a senha novamente" value="#{beanCadastrar.senhaValidacao}" />
+                        </h:panelGroup>
+                        <h:panelGroup>
+                            <p:commandButton id="cadastrar" action="#{beanCadastrar.cadastrarUsuario()}" value="Cadastrar"/>
+                            <p:messages autoUpdate="true"/>
+                        </h:panelGroup>
+                    </h:panelGrid>
+                </div>
+            </h:form>
+        </div>
     </h:body>
 </html>
 
