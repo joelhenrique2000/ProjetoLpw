@@ -1,0 +1,7 @@
+body {
+    background-image:url("#{resource['images:cidade.jpg']}");
+    /*background-image: url("../css/cidade.jpg");*/
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
