@@ -6,46 +6,9 @@
     <h:head>
         <title>Facelet Title</title>
         <meta http-equiv="X-UA-Compatible" content="IE=8"/>
-        <h:outputStylesheet name="./css/normalize.css"/>
-         <h:outputStylesheet name="./css/paginaLogin.css"/>
     </h:head>
     <h:body>
-<div class="container-desktop">
-            <div class="container-desktop-logo">
-                <h:graphicImage class="logo" value="/resources/images/blogy_branco.png" />
-            </div>
-            
-            <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
-
-            <p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
-                <p:graphicImage name="./images/spinner.gif" />
-            </p:dialog>
-            
-            <h:form class="container">
-                <div class="container-logo">
-                    <h:graphicImage class="logo logo-mobile" value="resources/images/blogy_branco.png" />
-                    <p:outputLabel class="header-text logo-desktop" value="Entrar" />
-                </div>
-                <div class="container-input">
-                    <h:panelGrid>
-                        <h:panelGroup>
-                            <p:inputText   placeholder="Digite seu e-mail" value="#{beanLogin.email}"/>
-                        </h:panelGroup>
-                        <h:panelGroup>
-                            <p:password  placeholder="Digite a sua senha" value="#{beanLogin.senha}"/>
-                        </h:panelGroup>
-                        <h:panelGroup>
-                            <p:commandButton styleClass="btn-block" action="#{beanLogin.login()}" value="Entrar" />
-                            <p:messages autoUpdate="true"/>
-                        </h:panelGroup>
-                        <h:panelGroup>
-                            <p:commandLink action="./cadastrar.xhtml?faces-redirect=true" value="Cadastrar" />
-                            <p:commandLink action="./esqueciSenha.xhtml?faces-redirect=true" value="Esqueceu a senha?" />
-                        </h:panelGroup>
-                    </h:panelGrid>
-                </div>
-            </h:form>            
-        </div>
+        <p:commandButton styleClass="btn-block" action="./paginas/cadastrar.xhtml" value="Entrar" />
     </h:body>
 </html>
 
