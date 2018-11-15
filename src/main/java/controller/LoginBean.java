@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.edu.ifpe.servicon.model.entidades;
+package controller;
 
-import controller.LoginBean;
+import br.edu.ifpe.servicon.model.entidades.*;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,7 +21,7 @@ import javax.faces.context.FacesContext;
  */
 @ManagedBean
 @SessionScoped
-public class pato {
+public class LoginBean {
 
     private String nome = "Heroku";
 
@@ -33,8 +33,12 @@ public class pato {
         this.nome = nome;
     }
     
-        public String logar() {
-            return "index.xhtml";
+    public void logar() {
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
+        } catch (IOException ex) {
+            Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
 }
