@@ -3,59 +3,70 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <h:head>
         <meta name="viewport" content="initial-scale=1, maximum-scale=1"></meta>
-        <title>Facelets Template</title>
+        <title>TemplatePaginaCriarPost</title>
         <h:outputStylesheet name="./css/TeamplatePaginaCriarPost.css"/>
         <h:outputStylesheet name="./css/IncludeHeaderPrincipal.css"/>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous"></link>
     </h:head>
 
     <h:body>
-     <ui:insert name="top">
+        <ui:insert name="top">
             <ui:include src="IncludeHeaderPrincipal.xhtml"/>
         </ui:insert>
 
         <ui:insert name="content" class="container">
-                <ul class="container-menu">
-                    <li>
-                        <i class="fas fa-align-left"></i>
-                        <p:commandLink value="Titulo"/>
-                    </li>
-                    <li>
-                        <i class="fas fa-tags"></i>
-                        <p:commandLink value="Marcadores"/>
-                    </li>
-                    <li>
-                        <i class="fas fa-image"></i>
-                        <p:commandLink value="Foto de capa"/>
-                    </li>
-                    <li>
-                        <i class="far fa-eye"></i>
-                        <p:commandLink value="Visualizar"/>
-                    </li>
-                    <li>
-                        <i class="fas fa-save"></i>
-                        <p:commandLink value="Salvar"/>
-                    </li>
-                    <li>
-                        <i class="fas fa-cloud-upload-alt"></i>
-                        <p:commandLink value="Publicar"/>
-                    </li>
-                    <li>
-                       <i class="fas fa-times"></i>
-                       <h:form>
-                           <p:commandLink action="index.xhtml?faces-redirect=true" value="Cadastrar" />
-                       </h:form>
-                    </li>
-                </ul>
+            <ul class="container-menu">
+                <li class="btnMenuScroll" id="titulo">
+                    <i class="fas fa-align-left"></i>
+                    <p:commandLink value="Titulo"/>
+                </li>
+                <li class="btnMenuScroll" id="marcadores">
+                    <i class="fas fa-tags"></i>
+                    <p:commandLink value="Marcadores"/>
+                </li>
+                <li class="btnMenuScroll" id="fotoDeCapa">
+                    <i class="fas fa-image"></i>
+                    <p:commandLink value="Foto de capa"/>
+                </li>
+                <li class="btnMenuScroll" id="visualizar">
+                    <i class="far fa-eye"></i>
+                    <p:commandLink value="Visualizar"/>
+                </li>
+                <li class="btnMenuScroll" id="salvar">
+                    <i class="fas fa-save"></i>
+                    <p:commandLink value="Salvar"/>
+                </li>
+                <li class="btnMenuScroll" id="publicar">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <p:commandLink value="Publicar"/>
+                </li>
+                <li class="btnMenuScroll" id="cancelar">
+                    <i class="fas fa-times"></i>
+                    <p:commandLink action="index.xhtml?faces-redirect=true" value="Cancelar" />
+                </li>
+            </ul>
 
-                <div class="container-textEditor">
-                    <p:editor/>
-                </div>
+            <div class="container-textEditor">
+                <!--<p:editor/>-->
+
+                <p:commandButton value="publicar" action="index.xhtml?faces-redirect=true"/>
+            </div>
         </ui:insert>
+
+        <h:form id="form-titulo">
+            Digite seu titutlo aqui
+        </h:form>
+        <h:form id="form-marcadores">
+            Digite seus marcadores aqui
+        </h:form>
+        <h:form id="form-fotoDeCapa">
+            Coloque sua foto de capa aqui
+        </h:form>
     </h:body>
 </html>
 
