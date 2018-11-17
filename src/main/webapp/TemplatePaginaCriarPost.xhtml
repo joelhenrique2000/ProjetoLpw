@@ -8,7 +8,7 @@
 
     <h:head>
         <meta name="viewport" content="initial-scale=1, maximum-scale=1"></meta>
-        <title>TemplatePaginaCriarPost</title>
+        <title>Postar</title>
         <h:outputStylesheet name="./css/TeamplatePaginaCriarPost.css"/>
         <h:outputStylesheet name="./css/IncludeHeaderPrincipal.css"/>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous"></link>
@@ -22,7 +22,7 @@
 
         <ui:insert name="content" class="container">
 
-            <ul class="container-menu">
+            <h:form class="container-menu">
                 <li class="btnMenuScroll" id="titulo">
                     <i class="icon fas fa-align-left"></i>
                     <p>Titulo</p>
@@ -35,32 +35,33 @@
                     <i class="icon fas fa-image"></i>
                     <p>Foto de capa</p>
                 </li>
-                <li class="btnMenuScroll" id="publicar">
+                <h:commandLink class="btnMenuScroll" id="publicar">
                     <i class="icon fas fa-cloud-upload-alt"></i>
                     <p>Publicar</p>
-                </li>
-                <li class="btnMenuScroll" id="cancelar">
+                </h:commandLink>
+                <h:commandLink class="btnMenuScroll" id="cancelar" action="#{criarPost.cancelarPostagem()}">
                     <i class="icon fas fa-times"></i>
                     <p>Cancelar</p>
-                </li>
-            </ul>
+                </h:commandLink>
+            </h:form>
 
             <h:form class="container-textEditor" enctype="multipart/form-data">
                 <p:growl id="messages" showDetail="true" />
+
                 
                 <div class="form-click" id="form-titulo">
                     <p:outputLabel styleClass="input-block" value="Digite o titulo da postagem"/>
                     <p:inputText  />
                 </div>
                 <div class="form-click" id="form-marcadores">
-                    <p:outputLabel styleClass="input-block" value="Digite os marcadores(pressione enter para confirmar)"/>
+                    <p:outputLabel value="Digite os marcadores(pressione enter para confirmar)"/>
                     <p:chips />
                 </div>
                 <div class="form-click" id="form-fotoDeCapa">
-                    <p:fileUpload  value="#{fileUploadView.file}" mode="simple" label="Escolher imagem do computador" skinSimple="false"/>
+                    <p:fileUpload   mode="simple" label="Escolher imagem do computador" skinSimple="false"/>
                 </div>
                 
-                <p:textEditor widgetVar="editor1" value="#{editorView.text}" />
+                <p:textEditor widgetVar="editor1" />
 
             </h:form>
         </ui:insert>
@@ -110,6 +111,7 @@
 
         $cancelar.addEventListener('click', function () {
             zerarTudo();
+            
         });
 
     </script>
