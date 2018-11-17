@@ -12,6 +12,7 @@
         <h:outputStylesheet name="./css/TeamplatePaginaCriarPost.css"/>
         <h:outputStylesheet name="./css/IncludeHeaderPrincipal.css"/>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous"></link>
+
     </h:head>
 
     <h:body>
@@ -20,54 +21,98 @@
         </ui:insert>
 
         <ui:insert name="content" class="container">
+
             <ul class="container-menu">
                 <li class="btnMenuScroll" id="titulo">
-                    <i class="fas fa-align-left"></i>
-                    <p:commandLink value="Titulo"/>
+                    <i class="icon fas fa-align-left"></i>
+                    <p>Titulo</p>
                 </li>
                 <li class="btnMenuScroll" id="marcadores">
-                    <i class="fas fa-tags"></i>
-                    <p:commandLink value="Marcadores"/>
+                    <i class="icon fas fa-tags"></i>
+                    <p>Marcadores</p>
                 </li>
                 <li class="btnMenuScroll" id="fotoDeCapa">
-                    <i class="fas fa-image"></i>
-                    <p:commandLink value="Foto de capa"/>
-                </li>
-                <li class="btnMenuScroll" id="visualizar">
-                    <i class="far fa-eye"></i>
-                    <p:commandLink value="Visualizar"/>
-                </li>
-                <li class="btnMenuScroll" id="salvar">
-                    <i class="fas fa-save"></i>
-                    <p:commandLink value="Salvar"/>
+                    <i class="icon fas fa-image"></i>
+                    <p>Foto de capa</p>
                 </li>
                 <li class="btnMenuScroll" id="publicar">
-                    <i class="fas fa-cloud-upload-alt"></i>
-                    <p:commandLink value="Publicar"/>
+                    <i class="icon fas fa-cloud-upload-alt"></i>
+                    <p>Publicar</p>
                 </li>
                 <li class="btnMenuScroll" id="cancelar">
-                    <i class="fas fa-times"></i>
-                    <p:commandLink action="index.xhtml?faces-redirect=true" value="Cancelar" />
+                    <i class="icon fas fa-times"></i>
+                    <p>Cancelar</p>
                 </li>
             </ul>
 
-            <div class="container-textEditor">
-                <!--<p:editor/>-->
+            <h:form class="container-textEditor" enctype="multipart/form-data">
+                <p:growl id="messages" showDetail="true" />
+                
+                <div class="form-click" id="form-titulo">
+                    <p:outputLabel styleClass="input-block" value="Digite o titulo da postagem"/>
+                    <p:inputText  />
+                </div>
+                <div class="form-click" id="form-marcadores">
+                    <p:outputLabel styleClass="input-block" value="Digite os marcadores(pressione enter para confirmar)"/>
+                    <p:chips />
+                </div>
+                <div class="form-click" id="form-fotoDeCapa">
+                    <p:fileUpload  value="#{fileUploadView.file}" mode="simple" label="Escolher imagem do computador" skinSimple="false"/>
+                </div>
+                
+                <p:textEditor widgetVar="editor1" value="#{editorView.text}" />
 
-                <p:commandButton value="publicar" action="index.xhtml?faces-redirect=true"/>
-            </div>
+            </h:form>
         </ui:insert>
-
-        <h:form id="form-titulo">
-            Digite seu titutlo aqui
-        </h:form>
-        <h:form id="form-marcadores">
-            Digite seus marcadores aqui
-        </h:form>
-        <h:form id="form-fotoDeCapa">
-            Coloque sua foto de capa aqui
-        </h:form>
     </h:body>
+
+    <script>
+        let $titulo = document.getElementById("titulo");
+        let $marcadores = document.getElementById("marcadores");
+        let $fotoDaCapa = document.getElementById("fotoDeCapa");
+        let $publicar = document.getElementById("publicar");
+        let $cancelar = document.getElementById("cancelar");
+
+        let $formTitulo = document.getElementById("form-titulo");
+        let $formMarcadores = document.getElementById("form-marcadores");
+        let $formFotoDaCapa = document.getElementById("form-fotoDeCapa");
+
+        function zerarTudo() {
+            $formTitulo.style.display = 'none';
+            $formMarcadores.style.display = 'none';
+            $formFotoDaCapa.style.display = 'none';
+        }
+
+        $formTitulo.style.display = 'none';
+        $formMarcadores.style.display = 'none';
+        $formFotoDaCapa.style.display = 'none';
+
+
+        $titulo.addEventListener('click', function () {
+            console.log('#{pato.nome}');
+            zerarTudo();
+            $formTitulo.style.display = 'flex';
+        });
+
+        $marcadores.addEventListener('click', function () {
+            zerarTudo();
+            $formMarcadores.style.display = 'flex';
+        });
+
+        $fotoDaCapa.addEventListener('click', function () {
+            zerarTudo();
+            $formFotoDaCapa.style.display = 'flex';
+        });
+
+        $publicar.addEventListener('click', function () {
+            zerarTudo();
+        });
+
+        $cancelar.addEventListener('click', function () {
+            zerarTudo();
+        });
+
+    </script>
 </html>
 
 
