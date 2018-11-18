@@ -8,8 +8,6 @@ body {
     background: #e9ebee;
 }
 
-
-
 /* Extra small devices (portrait phones, less than 576px) */
 @media (max-width: 575.98px) { 
 .container-perfil {
@@ -23,7 +21,7 @@ body {
     height: 150px;
     width: 100vw;
     position: absolute;
-    background-image:url("#{resource['images:cidade.jpg']}");
+    background-image:url("#{resource['images:backgroundWallpaper.jpg']}");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -40,6 +38,10 @@ body {
    display: flex;
    justify-content: center;
    align-items: center;
+}
+
+.foto-perfil {
+    object-fit: cover;
 }
 
 .foto {
@@ -174,7 +176,7 @@ body {
     height: 150px;
     width: 100vw;
     position: absolute;
-    background-image:url("#{resource['images:cidade.jpg']}");
+    background-image:url("#{resource['images:backgroundWallpaper.jpg']}");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -325,7 +327,7 @@ body {
     height: 150px;
     width: 100vw;
     position: absolute;
-    background-image:url("#{resource['images:cidade.jpg']}");
+    background-image:url("#{resource['images:backgroundWallpaper.jpg']}");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -476,7 +478,7 @@ body {
     height: 150px;
     width: 100vw;
     position: absolute;
-    background-image:url("#{resource['images:cidade.jpg']}");
+    background-image:url("#{resource['images:backgroundWallpaper.jpg']}");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -627,7 +629,7 @@ body {
     height: 150px;
     width: 100vw;
     position: absolute;
-    background-image:url("#{resource['images:cidade.jpg']}");
+    background-image:url("#{resource['images:backgroundWallpaper.jpg']}");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;

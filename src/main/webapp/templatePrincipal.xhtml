@@ -1,0 +1,135 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Facelet Title</title>
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1"></meta>
+        <h:outputStylesheet name="./css/IncludeHeaderPrincipal.css"/>
+        <h:outputStylesheet name="./css/principal.css"/>
+        <h:outputStylesheet name="./css/normalize.css"/>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous"></link>
+
+    </h:head>
+    <h:body>
+        <ui:insert name="top">
+            <ui:include src="IncludeHeaderPrincipal.xhtml"/>
+        </ui:insert>
+        <ui:insert name="content" >
+
+            <h:form>
+                <p:commandButton value="Deslogar" />
+                <p:commandButton action="cPost.xhtml?faces-redirect=true" value="Tela criar post" />
+                <p:commandButton action="oPerfil.xhtml?faces-redirect=true" value="Tela ver perfil de outras pessoas" />
+            </h:form>
+
+            <h:form class="container-menu meta-info">
+                <ui:repeat value="#{principalBean.categorias()}" var="categoria">
+                    <p:commandLink action="#{categoriaBean.redirect()}" class="btn-menu" value="#{categoria}"/>
+                </ui:repeat>
+            </h:form>
+
+            <div class="timeline">
+                <div class="article-container">
+                    <div class="article">
+                        <p:dataScroller value="#{postBean.posts()}" var="post" chunkSize="10" class="post">
+                            <div class="meta-info-perfil">
+                                <h:graphicImage class="foto" value="/resources/images/perfil.jpg" />
+                                <div class="meta-info-nome">
+                                    <p:commandLink class="nome" action="#{usuarioBean.toPerfilUser()}">#{post.autor.nome}</p:commandLink>
+                                </div>
+                            </div>
+                            <p:commandLink action="#{postBean.redirectVerPost()}" class="foto-capa">
+                                <h:graphicImage value="#{post.fotoCapa}" />
+                            </p:commandLink>
+                            <p:commandLink action="#{postBean.redirectVerPost()}" class="titulo-container">
+                                <div class="titulo">#{post.titulo.length() > 60 ? post.titulo.substring(0, 60).concat("...") : post.titulo}</div>
+                            </p:commandLink>
+                        </p:dataScroller>
+                    </div>
+                </div>
+
+
+                <nav class="nav-menu">
+                    <div  class="plug-card">
+                        <div class="plug-card-title">
+                            As melhores postagens
+                        </div>
+                        <ui:repeat value="#{postBean.listaMelhoresPostagens()}" var="post2">
+                            <div class="plug-card-container m-post">
+
+                                <div class="m-meta-info-perfil">
+                                    <h:graphicImage class="m-foto" value="/resources/images/perfil.jpg" />
+                                    <div class="m-meta-info-nome">
+                                        <p:commandLink action="#{usuarioBean.toPerfilUser()}" class="m-nome">#{post2.autor.nome}</p:commandLink>
+                                    </div>
+                                </div>
+                                <p:commandLink action="#{postBean.redirectVerPost()}" class="m-foto-capa">
+                                    <h:graphicImage value="#{post2.fotoCapa}" />
+                                </p:commandLink>
+                                <p:commandLink action="#{postBean.redirectVerPost()}" class="m-titulo-container">
+                                    <div class="m-titulo">#{post2.titulo.length() > 30 ? post2.titulo.substring(0, 30).concat("...") : post2.titulo}</div>
+                                </p:commandLink>
+
+                            </div>
+                        </ui:repeat>
+                    </div>
+
+                    <div class="plug-card">
+                        <div class="plug-card-title">
+                            Mais vistas
+                        </div>
+                        <ui:repeat value="#{postBean.listaPostsMaisVistos()}" var="post2">
+                            <div class="plug-card-container m-post">
+
+                                <div class="m-meta-info-perfil">
+                                    <h:graphicImage class="m-foto" value="/resources/images/perfil.jpg" />
+                                    <div class="m-meta-info-nome">
+                                        <p:commandLink action="#{usuarioBean.toPerfilUser()}" class="m-nome">#{post2.autor.nome}</p:commandLink>
+                                    </div>
+                                </div>
+                                <p:commandLink action="#{postBean.redirectVerPost()}" class="m-foto-capa">
+                                    <h:graphicImage value="#{post2.fotoCapa}" />
+                                </p:commandLink>
+                                <p:commandLink action="#{postBean.redirectVerPost()}" class="m-titulo-container">
+                                    <div class="m-titulo">#{post2.titulo.length() > 30 ? post2.titulo.substring(0, 30).concat("...") : post2.titulo}</div>
+                                </p:commandLink>
+
+                            </div>
+                        </ui:repeat>
+                    </div>
+
+                    <div class="plug-card">
+                        <div class="plug-card-title">
+                            Para você 
+                        </div>
+                        <ui:repeat value="#{postBean.listaPostAleatorios()}" var="post2">
+                            <div class="plug-card-container m-post">
+
+                                <div class="m-meta-info-perfil">
+                                    <h:graphicImage class="m-foto" value="/resources/images/perfil.jpg" />
+                                    <div class="m-meta-info-nome">
+                                        <p:commandLink action="#{usuarioBean.toPerfilUser()}" class="m-nome">#{post2.autor.nome}</p:commandLink>
+                                    </div>
+                                </div>
+                                <p:commandLink action="#{postBean.redirectVerPost()}" class="m-foto-capa">
+                                    <h:graphicImage value="#{post2.fotoCapa}" />
+                                </p:commandLink>
+                                <p:commandLink action="#{postBean.redirectVerPost()}" class="m-titulo-container">
+                                    <div class="m-titulo">#{post2.titulo.length() > 30 ? post2.titulo.substring(0, 30).concat("...") : post2.titulo}</div>
+                                </p:commandLink>
+
+                            </div>
+                        </ui:repeat>
+                    </div>
+                </nav>
+            </div>
+
+
+        </ui:insert>
+    </h:body>
+</html>
+

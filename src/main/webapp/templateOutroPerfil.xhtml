@@ -22,7 +22,7 @@
                     
                 </div>
                 <p:commandLink class="foto-border">
-                    <h:graphicImage class="foto" value="/resources/images/cidade.jpg" />
+                    <h:graphicImage class="foto foto-perfil" style="object-fit: cover;" value="/resources/images/perfil.jpg" />
                 </p:commandLink>
                 <h:form class="meta-info">
                     <p:commandLink value="Postagens"/>
@@ -32,30 +32,25 @@
             </div>
             <div class="article-container">
                 <div class="article">
-                    
-                    <div class="post">
+                    <p:dataScroller value="#{postBean.posts()}" var="post" chunkSize="10" class="post">
                         <div class="meta-info-perfil">
-                            <h:graphicImage class="foto" value="/resources/images/cidade.jpg" />
+                            <h:graphicImage class="foto" value="/resources/images/perfil.jpg" />
                             <div class="meta-info-nome">
-                                <p:commandLink class="nome">Joel Henrique</p:commandLink>
-                                <div class="tags">React, NodeJs, Java, Js, CSS3, HTML5</div>
+                                <p:commandLink class="nome">#{post.autor.nome}</p:commandLink>
+                                <div class="tags">#{post.categoria}</div>
                             </div>
                         </div>
                         <p:commandLink class="foto-capa">
                             <h:graphicImage value="/resources/images/cidade.jpg" />
                         </p:commandLink>
                         <p:commandLink class="titulo-container">
-                            <div class="titulo">Lorem ipsum dolor same...</div>
-                            <div class="data">24/03/2000</div>
+                            <div class="titulo">#{post.titulo.length() > 60 ? post.titulo.substring(0, 60).concat("...") : post.titulo}</div>
+                            <!--<div class="data">24/03/2000</div>-->
                         </p:commandLink>
-                        <h:form class="comentario">
-                            <p:inputText/>
-                            <p:commandButton value="enviar"/>
-                        </h:form>
-                    </div>
-     
+                    </p:dataScroller>
                 </div>
             </div>
+            
         </ui:insert>
     </h:body>
 </html>
