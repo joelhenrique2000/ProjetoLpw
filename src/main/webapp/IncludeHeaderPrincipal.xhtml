@@ -1,25 +1,35 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-    xmlns:p="http://primefaces.org/ui">
-     
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
     <h:head>
-         <meta name="viewport" content="initial-scale=1, maximum-scale=1"></meta>
-         <h:outputStylesheet name="./css/IncludeHeaderPrincipal.css"/>
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1"></meta>
+        <h:outputStylesheet name="./css/IncludeHeaderPrincipal.css"/>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous"></link>
+
     </h:head>
 
     <h:body>
         <ui:composition>
-            
+
             <h:form class="nav-container">
                 <p:commandLink action="principal.xhtml?faces-redirect=true" class="nav-container-logo">
                     <h:graphicImage class="logo" value="/resources/images/blogy_white.png"/>
                 </p:commandLink>
-                <p>Blogy Beta</p>
-                <p:commandLink action="oPerfil.xhtml?faces-redirect=true" class="menu-header">
-                    <h:graphicImage class="logo" value="/resources/images/perfil.jpg"/>
-                </p:commandLink>
+                <p class="title">Blogy Beta</p>
+                <div class="menu">
+                    <p:commandLink action="cPost.xhtml?faces-redirect=true">
+                        <i class="fas fa-plus fa-2x"></i>
+                    </p:commandLink>
+                    <p:commandLink action="index.xhtml?faces-redirect=true">
+                        <i class="fas fa-sign-out-alt fa-2x"></i>
+                    </p:commandLink>
+                    <p:commandLink action="oPerfil.xhtml?faces-redirect=true" class="menu-header">
+                        <h:graphicImage class="logo" value="/resources/images/perfil.jpg"/>
+                    </p:commandLink>
+                </div>
             </h:form>
 
         </ui:composition>

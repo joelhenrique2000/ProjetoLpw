@@ -20,50 +20,60 @@
             <ui:include src="IncludeHeaderPrincipal.xhtml"/>
         </ui:insert>
 
-        <ui:insert name="content" class="container">
+        <ui:insert name="content" >
 
-            <h:form class="container-menu">
-                <li class="btnMenuScroll" id="titulo">
-                    <i class="icon fas fa-align-left"></i>
-                    <p>Titulo</p>
-                </li>
-                <li class="btnMenuScroll" id="marcadores">
-                    <i class="icon fas fa-tags"></i>
-                    <p>Marcadores</p>
-                </li>
-                <li class="btnMenuScroll" id="fotoDeCapa">
-                    <i class="icon fas fa-image"></i>
-                    <p>Foto de capa</p>
-                </li>
-                <h:commandLink class="btnMenuScroll" id="publicar">
-                    <i class="icon fas fa-cloud-upload-alt"></i>
-                    <p>Publicar</p>
-                </h:commandLink>
-                <h:commandLink class="btnMenuScroll" id="cancelar" action="#{criarPost.cancelarPostagem()}">
-                    <i class="icon fas fa-times"></i>
-                    <p>Cancelar</p>
-                </h:commandLink>
-            </h:form>
-
-            <h:form class="container-textEditor" enctype="multipart/form-data">
+            <h:form class="container" enctype="multipart/form-data">
                 <p:growl id="messages" showDetail="true" />
 
-                
-                <div class="form-click" id="form-titulo">
-                    <p:outputLabel styleClass="input-block" value="Digite o titulo da postagem"/>
-                    <p:inputText  />
+                <div class="container-menu">
+                    <li class="btnMenuScroll" id="titulo">
+                        <i class="icon fas fa-align-left"></i>
+                        <p>Titulo</p>
+                    </li>
+                    <li class="btnMenuScroll" id="marcadores">
+                        <i class="icon fas fa-tags"></i>
+                        <p>Marcadores</p>
+                    </li>
+                    <li class="btnMenuScroll" id="fotoDeCapa">
+                        <i class="icon fas fa-image"></i>
+                        <p>Foto de capa</p>
+                    </li>
+                    <h:commandLink action="#{criarPost.mostrarParaOMundo()}" class="btnMenuScroll" id="publicar">
+                        <i class="icon fas fa-cloud-upload-alt"></i>
+                        <p>Publicar</p>
+                    </h:commandLink>
+                    <h:commandLink class="btnMenuScroll" id="apagar" onclick="PF('editor1').clear();">
+                        <i class="icon fas fa-eraser"></i>
+                        <p>Apagar</p>
+                    </h:commandLink>
+                    <h:commandLink class="btnMenuScroll" id="cancelar" action="#{criarPost.cancelarPostagem()}">
+                        <i class="icon fas fa-times"></i>
+                        <p>Cancelar</p>
+                    </h:commandLink>
                 </div>
-                <div class="form-click" id="form-marcadores">
-                    <p:outputLabel value="Digite os marcadores(pressione enter para confirmar)"/>
-                    <p:chips />
-                </div>
-                <div class="form-click" id="form-fotoDeCapa">
-                    <p:fileUpload   mode="simple" label="Escolher imagem do computador" skinSimple="false"/>
-                </div>
-                
-                <p:textEditor widgetVar="editor1" />
 
+                <div class="container-textEditor">
+
+
+
+                    <div class="form-click" id="form-titulo">
+                        <p:outputLabel styleClass="input-block" value="Digite o titulo da postagem"/>
+                        <p:inputText required="false" />
+                    </div>
+                    <div class="form-click" id="form-marcadores">
+                        <p:outputLabel value="Digite os marcadores(pressione enter para confirmar)"/>
+                        <p:chips required="false" />
+                    </div>
+                    <div class="form-click" id="form-fotoDeCapa">
+                        <p:fileUpload  required="false" mode="simple" label="Escolher imagem do computador" skinSimple="false"/>
+                    </div>
+
+                    <p:textEditor widgetVar="editor1" value="#{criarPost.text}"/>
+
+                </div>
             </h:form>
+
+
         </ui:insert>
     </h:body>
 
@@ -111,7 +121,7 @@
 
         $cancelar.addEventListener('click', function () {
             zerarTudo();
-            
+
         });
 
     </script>

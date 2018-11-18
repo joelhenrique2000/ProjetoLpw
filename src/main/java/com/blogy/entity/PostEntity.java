@@ -25,7 +25,11 @@ public class PostEntity {
     private int curtidasPositivas;
 
     public PostEntity() {
+        this.titulo = "Sem titulo";
+        this.Categoria = MarcadorEnum.SEM_CATEGORIA;
         this.fotoCapa = "/resources/images/semfoto.jpg";
+        this.curtidasNegativas = 0;
+        this.curtidasPositivas = 0;
     }
     
     public long getId() {

@@ -19,13 +19,6 @@
             <ui:include src="IncludeHeaderPrincipal.xhtml"/>
         </ui:insert>
         <ui:insert name="content" >
-
-            <h:form>
-                <p:commandButton value="Deslogar" />
-                <p:commandButton action="cPost.xhtml?faces-redirect=true" value="Tela criar post" />
-                <p:commandButton action="oPerfil.xhtml?faces-redirect=true" value="Tela ver perfil de outras pessoas" />
-            </h:form>
-
             <h:form class="container-menu meta-info">
                 <ui:repeat value="#{principalBean.categorias()}" var="categoria">
                     <p:commandLink action="#{categoriaBean.redirect()}" class="btn-menu" value="#{categoria}"/>
