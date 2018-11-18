@@ -25,7 +25,7 @@ public class PostEntity {
     private int curtidasPositivas;
 
     public PostEntity() {
-        this.fotoCapa = "//resources//images//semfoto.jpg";
+        this.fotoCapa = "/resources/images/semfoto.jpg";
     }
     
     public long getId() {
