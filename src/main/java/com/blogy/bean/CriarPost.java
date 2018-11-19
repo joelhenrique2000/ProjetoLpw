@@ -59,6 +59,15 @@ public class CriarPost {
     public void setNomePost(String nomePost) {
         this.nomePost = nomePost;
     }
+
+    public String getText2() {
+        return text2;
+    }
+
+    public void setText2(String text2) {
+        this.text2 = text2;
+    }
+    
     
     
     public void cancelarPostagem() {

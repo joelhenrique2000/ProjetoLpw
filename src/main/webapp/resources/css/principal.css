@@ -8,6 +8,11 @@ body {
 }
 
 
+.title-categoria {
+    font-size: 40px;
+    margin-bottom: 30px;
+}
+
 .container-menu {
 
 }
@@ -33,6 +38,22 @@ body {
 .meta-info a:hover {
     background: #0077cc !important;
 }
+
+.post-block {
+    width: 80%;
+    margin: 20px;
+    border: 2px solid #c8c8c8;
+    padding: 20px;
+    border-radius: 5px 5px 5px 5px / 5px 5px 5px 5px;
+     overflow:auto; 
+}
+
+.post-block-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
 
 
 

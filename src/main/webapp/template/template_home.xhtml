@@ -12,16 +12,15 @@
         <h:outputStylesheet name="./css/principal.css"/>
         <h:outputStylesheet name="./css/normalize.css"/>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous"></link>
-
     </h:head>
     <h:body>
         <ui:insert name="top">
-            <ui:include src="IncludeHeaderPrincipal.xhtml"/>
+            <ui:include src="/include/include_menuHeaderMain.xhtml"/>
         </ui:insert>
         <ui:insert name="content" >
             <h:form class="container-menu meta-info">
                 <ui:repeat value="#{principalBean.categorias()}" var="categoria">
-                    <p:commandLink action="#{categoriaBean.redirect()}" class="btn-menu" value="#{categoria}"/>
+                    <p:commandLink action="#{homeBean.toCategoria()}" class="btn-menu" value="#{categoria}"/>
                 </ui:repeat>
             </h:form>
 
@@ -32,13 +31,13 @@
                             <div class="meta-info-perfil">
                                 <h:graphicImage class="foto" value="/resources/images/perfil.jpg" />
                                 <div class="meta-info-nome">
-                                    <p:commandLink class="nome" action="#{usuarioBean.toPerfilUser()}">#{post.autor.nome}</p:commandLink>
+                                    <p:commandLink class="nome" action="#{homeBean.toPerfil()}">#{post.autor.nome}</p:commandLink>
                                 </div>
                             </div>
-                            <p:commandLink action="#{postBean.redirectVerPost()}" class="foto-capa">
+                            <p:commandLink action="#{homeBean.toPost()}" class="foto-capa">
                                 <h:graphicImage value="#{post.fotoCapa}" />
                             </p:commandLink>
-                            <p:commandLink action="#{postBean.redirectVerPost()}" class="titulo-container">
+                            <p:commandLink action="#{homeBean.toPost()}" class="titulo-container">
                                 <div class="titulo">#{post.titulo.length() > 60 ? post.titulo.substring(0, 60).concat("...") : post.titulo}</div>
                             </p:commandLink>
                         </p:dataScroller>
@@ -57,13 +56,13 @@
                                 <div class="m-meta-info-perfil">
                                     <h:graphicImage class="m-foto" value="/resources/images/perfil.jpg" />
                                     <div class="m-meta-info-nome">
-                                        <p:commandLink action="#{usuarioBean.toPerfilUser()}" class="m-nome">#{post2.autor.nome}</p:commandLink>
+                                        <p:commandLink action="#{homeBean.toPerfil()}" class="m-nome">#{post2.autor.nome}</p:commandLink>
                                     </div>
                                 </div>
-                                <p:commandLink action="#{postBean.redirectVerPost()}" class="m-foto-capa">
+                                <p:commandLink action="#{homeBean.toPost()}" class="m-foto-capa">
                                     <h:graphicImage value="#{post2.fotoCapa}" />
                                 </p:commandLink>
-                                <p:commandLink action="#{postBean.redirectVerPost()}" class="m-titulo-container">
+                                <p:commandLink action="#{homeBean.toPost()}" class="m-titulo-container">
                                     <div class="m-titulo">#{post2.titulo.length() > 30 ? post2.titulo.substring(0, 30).concat("...") : post2.titulo}</div>
                                 </p:commandLink>
 
@@ -81,13 +80,13 @@
                                 <div class="m-meta-info-perfil">
                                     <h:graphicImage class="m-foto" value="/resources/images/perfil.jpg" />
                                     <div class="m-meta-info-nome">
-                                        <p:commandLink action="#{usuarioBean.toPerfilUser()}" class="m-nome">#{post2.autor.nome}</p:commandLink>
+                                        <p:commandLink action="#{homeBean.toPerfil()}" class="m-nome">#{post2.autor.nome}</p:commandLink>
                                     </div>
                                 </div>
-                                <p:commandLink action="#{postBean.redirectVerPost()}" class="m-foto-capa">
+                                <p:commandLink action="#{homeBean.toPost()}" class="m-foto-capa">
                                     <h:graphicImage value="#{post2.fotoCapa}" />
                                 </p:commandLink>
-                                <p:commandLink action="#{postBean.redirectVerPost()}" class="m-titulo-container">
+                                <p:commandLink action="#{homeBean.toPost()}" class="m-titulo-container">
                                     <div class="m-titulo">#{post2.titulo.length() > 30 ? post2.titulo.substring(0, 30).concat("...") : post2.titulo}</div>
                                 </p:commandLink>
 
@@ -105,13 +104,13 @@
                                 <div class="m-meta-info-perfil">
                                     <h:graphicImage class="m-foto" value="/resources/images/perfil.jpg" />
                                     <div class="m-meta-info-nome">
-                                        <p:commandLink action="#{usuarioBean.toPerfilUser()}" class="m-nome">#{post2.autor.nome}</p:commandLink>
+                                        <p:commandLink action="#{homeBean.toPerfil()}" class="m-nome">#{post2.autor.nome}</p:commandLink>
                                     </div>
                                 </div>
-                                <p:commandLink action="#{postBean.redirectVerPost()}" class="m-foto-capa">
+                                <p:commandLink action="#{homeBean.toPost()}" class="m-foto-capa">
                                     <h:graphicImage value="#{post2.fotoCapa}" />
                                 </p:commandLink>
-                                <p:commandLink action="#{postBean.redirectVerPost()}" class="m-titulo-container">
+                                <p:commandLink action="#{homeBean.toPost()}" class="m-titulo-container">
                                     <div class="m-titulo">#{post2.titulo.length() > 30 ? post2.titulo.substring(0, 30).concat("...") : post2.titulo}</div>
                                 </p:commandLink>
 

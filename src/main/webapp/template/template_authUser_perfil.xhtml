@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1"></meta>
+        <title>patolino patolino</title>
+        <h:outputStylesheet name="./css/oPerfil.css"/>
+        <h:outputStylesheet name="./css/IncludeHeaderPrincipal.css"/>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous"></link>
+    </h:head>
+    <h:body>
+        <ui:insert name="top">
+            <ui:include src="/include/include_menuHeaderMain.xhtml"/>
+        </ui:insert>
+
+        <ui:insert name="content" class="container">
+            <div class="container-perfil">
+                <div class="capa">
+                    
+                </div>
+                <p:commandLink class="foto-border">
+                    <h:graphicImage class="foto foto-perfil" style="object-fit: cover;" value="/resources/images/perfil.jpg" />
+                </p:commandLink>
+                <h:form class="meta-info">
+                    <p:commandLink value="Postagens"/>
+                    <p:commandLink value="Amigos"/>
+                    <p:commandLink value="Favoritos"/>
+                </h:form>
+            </div>
+            <div class="article-container">
+                <div class="article">
+                    <p:dataScroller value="#{postBean.posts()}" var="post" chunkSize="10" class="post">
+                        <div class="meta-info-perfil">
+                            <h:graphicImage class="foto" value="/resources/images/perfil.jpg" />
+                            <div class="meta-info-nome">
+                                <p:commandLink class="nome">#{post.autor.nome}</p:commandLink>
+                                <div class="tags">#{post.categoria}</div>
+                            </div>
+                        </div>
+                        <p:commandLink class="foto-capa">
+                            <h:graphicImage value="/resources/images/cidade.jpg" />
+                        </p:commandLink>
+                        <p:commandLink class="titulo-container">
+                            <div class="titulo">#{post.titulo.length() > 60 ? post.titulo.substring(0, 60).concat("...") : post.titulo}</div>
+                            <!--<div class="data">24/03/2000</div>-->
+                        </p:commandLink>
+                    </p:dataScroller>
+                </div>
+            </div>
+            
+        </ui:insert>
+    </h:body>
+</html>
+
