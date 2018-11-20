@@ -8,14 +8,28 @@ body {
     background: #e9ebee;
 }
 
+.btn-add-amigo {
+    background: #64b474 !important;
+    color: #FFF !important;
+}
+
+.btn-add-amigo:hover {
+    background: #599f67 !important;
+}
+
+.meta-info-perfil {
+    position: relative;
+    
+}
+
+.button-command {
+    position: absolute;
+    right: 10px;
+}
+
 /* Extra small devices (portrait phones, less than 576px) */
 @media (max-width: 575.98px) { 
-.container-perfil {
-   height: 220px;
-   width: 100vw;
-   position: relative;
-   background: #FFF;
-}
+
 
 .capa {
     height: 150px;
@@ -25,6 +39,8 @@ body {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    display: flex;
+    justify-content: center;
 }
 
 .foto-border {
@@ -52,8 +68,6 @@ body {
 
 .meta-info {
     position: absolute;
-    bottom: 25px;
-    margin-left: 150px;
 }
 
 .meta-info a {
@@ -85,61 +99,31 @@ body {
     align-items: center;
 }
 
-.meta-info-perfil {
-    width: 100%;
-    height: 70px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    background: #FFF;
-}
+    .post {
+        background: #fff;
+        width: 84%;
+        margin: 13px 0;
 
-.meta-info-nome {
-    margin-left: 10px;
-}
+    }
+    .meta-info-perfil {
+        display: flex;
+        flex-direction: row;
+        height: 50px;
+        align-items: center;
 
-.meta-info-nome .nome {
-    font-size: 25px;
-    color: #365899;
-    font-weight: 600;
-    text-decoration: none;
-}
+    }
+    
+    .meta-info-perfil img {
+        height: 30px;
+        width: 30px;
+        object-fit: cover;
+        margin: 0 10px;
+    }
+    
+    .foto {
+        
+    }
 
-.meta-info-nome .tags {
-    font-size: 16px;
-}
-
-.titulo-container {
-    height: 80px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    color: #666666;
-}
-
-.titulo-container .titulo {
-    font-size: 30px;
-}
-
-.titulo-container .data {
-    font-size: 16px;
-}
-
-.meta-info-perfil .foto {
-    height: 50px;
-    width: 50px;
-    margin-left: 10px;
-    object-fit: cover;
-}
-
-.post {
-    width: 80%;
-    height: auto;
-    margin-bottom: 20px;
-    background: #fff;
-}
 
 .comentario {
     border-top: 1px solid #dddfe2;
@@ -155,12 +139,109 @@ body {
     margin-right: 10px;
 }
 
-.foto-capa img {
-    width: 100%;
-    height: 350px;
-    object-fit: cover;
-    background-size: cover;
+
+    .article {
+    display: flex;
+    justify-content: center;
+    
 }
+.post {
+        background: #fff;
+        width: 84%;
+        margin: 13px 0;
+
+    }
+.meta-info-perfil {
+        display: flex;
+        flex-direction: row;
+        height: 50px;
+        align-items: center;
+
+    }
+.meta-info-perfil img {
+        height: 30px;
+        width: 30px;
+        object-fit: cover;
+        margin: 0 10px;
+    }
+.nome {
+                color: #365899;
+        text-decoration: none;
+    }
+.tags {
+        
+    }
+.foto-capa img {
+        width: 100%;
+        height: 176px;
+        object-fit: cover;
+    }
+.titulo-container {
+        text-decoration: none;
+        display: flex;
+        justify-content: center;
+    }
+.titulo {
+        color: #4f4f4f;
+        margin: 10px 0;
+    }
+    
+    
+    
+    
+    
+    .container-perfil {
+
+   width: 100vw;
+   background: #FFF;
+}
+    .block-capa {
+        background: red;
+        height: 250px;
+            background-image:url("#{resource['images:backgroundWallpaper.jpg']}");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    }
+    
+    .block-fp {
+           background: #FFF;
+   height: 120px;
+   width: 120px;
+   border-radius: 4px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   margin-bottom: 18px;
+    }
+    
+    .block-fp-foto {
+            object-fit: cover;
+               height: 110px;
+   width: 110px;
+   border-radius: 4px;
+    }
+    
+    .menu-scroll-perfil {
+        width: 100%;
+        background: #FFF;
+        overflow-x: auto;
+        height: 79px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .title-perfil {
+        color: #FFF;
+        font-size: 20px;
+        margin-top: 18px;
+    }
 }
 
 /* Small devices (landscape phones, 576px and up) */
@@ -312,6 +393,62 @@ body {
     object-fit: cover;
     background-size: cover;
 }
+
+    .container-perfil {
+
+   width: 100vw;
+   background: #FFF;
+}
+    .block-capa {
+        background: red;
+        height: 250px;
+            background-image:url("#{resource['images:backgroundWallpaper.jpg']}");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    }
+    
+    .block-fp {
+           background: #FFF;
+   height: 120px;
+   width: 120px;
+   border-radius: 4px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   margin-bottom: 18px;
+    }
+    
+    .block-fp-foto {
+            object-fit: cover;
+               height: 110px;
+   width: 110px;
+   border-radius: 4px;
+    }
+    
+    .menu-scroll-perfil {
+        width: 100%;
+        background: #FFF;
+        overflow-x: auto;
+        height: 79px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .title-perfil {
+        color: #FFF;
+        font-size: 20px;
+        margin-top: 18px;
+    }
+        .timeline {
+        margin-top: 130px;
+    }
 }
 
 /* Medium devices (tablets, 768px and up) */
@@ -463,6 +600,61 @@ body {
     object-fit: cover;
     background-size: cover;
 }
+    .container-perfil {
+
+   width: 100vw;
+   background: #FFF;
+}
+    .block-capa {
+        background: red;
+        height: 250px;
+            background-image:url("#{resource['images:backgroundWallpaper.jpg']}");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    }
+    
+    .block-fp {
+           background: #FFF;
+   height: 120px;
+   width: 120px;
+   border-radius: 4px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   margin-bottom: 18px;
+    }
+    
+    .block-fp-foto {
+            object-fit: cover;
+               height: 110px;
+   width: 110px;
+   border-radius: 4px;
+    }
+    
+    .menu-scroll-perfil {
+        width: 100%;
+        background: #FFF;
+        overflow-x: auto;
+        height: 79px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .title-perfil {
+        color: #FFF;
+        font-size: 20px;
+        margin-top: 18px;
+    }
+        .timeline {
+        margin-top: 130px;
+    }
 }
 
 /* Large devices (desktops, 992px and up) */
@@ -614,6 +806,65 @@ body {
     object-fit: cover;
     background-size: cover;
 }
+
+
+
+    .container-perfil {
+
+   width: 100vw;
+   background: #FFF;
+}
+    .block-capa {
+        background: red;
+        height: 300px;
+            background-image:url("#{resource['images:backgroundWallpaper.jpg']}");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    }
+    
+    .block-fp {
+           background: #FFF;
+   height: 120px;
+   width: 120px;
+   border-radius: 4px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   margin-bottom: 18px;
+    }
+    
+    .block-fp-foto {
+            object-fit: cover;
+               height: 110px;
+   width: 110px;
+   border-radius: 4px;
+    }
+    
+    .menu-scroll-perfil {
+        width: 100%;
+        background: #FFF;
+        overflow-x: auto;
+        height: 79px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .title-perfil {
+        color: #FFF;
+        font-size: 20px;
+        margin-top: 18px;
+    }
+    
+        .timeline {
+        margin-top: 230px;
+    }
 }
 
 /* Extra large devices (large desktops, 1200px and up) */
@@ -765,4 +1016,75 @@ body {
     object-fit: cover;
     background-size: cover;
 }
+
+
+.title-nome {
+    font-size: 27px;
+    position: absolute;
+    bottom: 60px;
+    margin-left: 10px;
+    color: #FFF;
+    font-weight: 700;
+}
+
+.title-nome button{
+    height: 10px;
+}
+
+    .container-perfil {
+
+   width: 100vw;
+   background: #FFF;
+}
+    .block-capa {
+        background: red;
+        height: 320px;
+            background-image:url("#{resource['images:backgroundWallpaper.jpg']}");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    }
+    
+    .block-fp {
+           background: #FFF;
+   height: 120px;
+   width: 120px;
+   border-radius: 4px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   margin-bottom: 18px;
+    }
+    
+    .block-fp-foto {
+            object-fit: cover;
+               height: 110px;
+   width: 110px;
+   border-radius: 4px;
+    }
+    
+    .menu-scroll-perfil {
+        width: 100%;
+        background: #FFF;
+        overflow-x: auto;
+        height: 79px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .title-perfil {
+        color: #FFF;
+        font-size: 20px;
+        margin-top: 18px;
+    }
+
+    .timeline {
+        margin-top: 230px;
+    }
 }

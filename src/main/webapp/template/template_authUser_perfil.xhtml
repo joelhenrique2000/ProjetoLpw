@@ -6,9 +6,10 @@
       xmlns:p="http://primefaces.org/ui">
     <h:head>
         <meta name="viewport" content="initial-scale=1, maximum-scale=1"></meta>
-        <title>patolino patolino</title>
+        <title>AdminAuth</title>
         <h:outputStylesheet name="./css/oPerfil.css"/>
         <h:outputStylesheet name="./css/IncludeHeaderPrincipal.css"/>
+
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous"></link>
     </h:head>
     <h:body>
@@ -18,38 +19,48 @@
 
         <ui:insert name="content" class="container">
             <div class="container-perfil">
-                <div class="capa">
-                    
+                <div class="block-capa">
+                    <p:commandLink class="block-fp">
+                         <h:graphicImage class="block-fp-foto" style="object-fit: cover;" value="/resources/images/perfil.jpg" />
+                    </p:commandLink>
+                    <p:outputLabel class="title-perfil" value="Joel Henrique Silva Santos"/>
                 </div>
-                <p:commandLink class="foto-border">
-                    <h:graphicImage class="foto foto-perfil" style="object-fit: cover;" value="/resources/images/perfil.jpg" />
-                </p:commandLink>
-                <h:form class="meta-info">
-                    <p:commandLink value="Postagens"/>
-                    <p:commandLink value="Amigos"/>
-                    <p:commandLink value="Favoritos"/>
-                </h:form>
+                <div class="menu-scroll-perfil">
+                    <p:commandButton value="Home"/>
+                    <p:commandButton value="Amigos"/>
+                    <p:commandButton value="Favoritos"/>
+                </div>
             </div>
-            <div class="article-container">
-                <div class="article">
-                    <p:dataScroller value="#{postBean.posts()}" var="post" chunkSize="10" class="post">
-                        <div class="meta-info-perfil">
-                            <h:graphicImage class="foto" value="/resources/images/perfil.jpg" />
-                            <div class="meta-info-nome">
-                                <p:commandLink class="nome">#{post.autor.nome}</p:commandLink>
-                                <div class="tags">#{post.categoria}</div>
+            
+            <h:form rendered="true" class="timeline">
+                <div class="article-container">
+                    <div class="article">
+                        <p:dataScroller value="#{postBean.posts()}" var="post" chunkSize="10" class="post">
+                            <div class="meta-info-perfil">
+                                <h:graphicImage class="foto" value="/resources/images/perfil.jpg" />
+                                <div class="meta-info-nome">
+                                    <p:commandLink class="nome" action="#{homeBean.toPerfilAuth()}">#{post.autor.nome}</p:commandLink>
+                                    <div class="tags">#{post.categoria}</div>
+                                </div>
+                                <div class="button-command">
+                                    <p:commandLink action="#{headerMenuMainBean.toPageCriarPost()}">
+                                        <i class="fas fa-edit" style="margin-right: 7px"></i>
+                                    </p:commandLink>
+                                    <p:commandLink action="#{headerMenuMainBean.toPageHome()}">
+                                        <i class="far fa-trash-alt"></i>
+                                    </p:commandLink>
+                                </div>
                             </div>
-                        </div>
-                        <p:commandLink class="foto-capa">
-                            <h:graphicImage value="/resources/images/cidade.jpg" />
-                        </p:commandLink>
-                        <p:commandLink class="titulo-container">
-                            <div class="titulo">#{post.titulo.length() > 60 ? post.titulo.substring(0, 60).concat("...") : post.titulo}</div>
-                            <!--<div class="data">24/03/2000</div>-->
-                        </p:commandLink>
-                    </p:dataScroller>
+                            <p:commandLink action="#{homeBean.toPost()}" class="foto-capa">
+                                <h:graphicImage value="#{post.fotoCapa}" />
+                            </p:commandLink>
+                            <p:commandLink action="#{homeBean.toPost()}" class="titulo-container">
+                                <div class="titulo">#{post.titulo.length() > 60 ? post.titulo.substring(0, 60).concat("...") : post.titulo}</div>
+                            </p:commandLink>
+                        </p:dataScroller>
+                    </div>
                 </div>
-            </div>
+            </h:form>
             
         </ui:insert>
     </h:body>

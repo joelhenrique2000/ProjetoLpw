@@ -19,6 +19,10 @@ import javax.faces.bean.SessionScoped;
 @SessionScoped
 public class PrincipalBean {
     
+    public MarcadorEnum[] getMarcadorEnum() {
+        return MarcadorEnum.values();
+    }
+    
     public List<String> categorias() {
         MarcadorEnum m = null;
         

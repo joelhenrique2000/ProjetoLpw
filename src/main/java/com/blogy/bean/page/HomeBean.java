@@ -33,6 +33,14 @@ public class HomeBean {
         }  
     }
     
+    public void toPerfilAuth() {
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("../authUser/perfil.xhtml");
+        } catch (IOException ex) {
+            Logger.getLogger(CriarPost.class.getName()).log(Level.SEVERE, null, ex);
+        }  
+    }
+    
     public void toCategoria() {
         try {
             FacesContext.getCurrentInstance().getExternalContext().redirect("../page/categoria.xhtml");

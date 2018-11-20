@@ -12,22 +12,65 @@
         <h:outputStylesheet name="./css/principal.css"/>
         <h:outputStylesheet name="./css/normalize.css"/>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous"></link>
+        <style>
+            body {
+
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .a-block-container {
+                width: 85vw;
+            }
+
+            .nav-container {
+                padding: 14px 0;
+            }
+        </style>
     </h:head>
     <h:body>
         <ui:insert name="top">
             <ui:include src="/include/include_menuHeaderMain.xhtml"/>
         </ui:insert>
         <ui:insert name="content" class="container-post" >
+
             <div class="post-block-container">
+
                 <div class="post-block">
                     <p:outputPanel >
+                        <div class="title-p">Berserk</div>
                         <h:outputText value="#{criarPost.text2}" escape="false" />
                     </p:outputPanel>
                 </div>
+
             </div>
-                <div class="post-interacoes">
-                    a
+
+            <div class="a-block-container">
+                <p:commandLink class="container-op btn-int">
+                    <i class="fas fa-angle-up fa-2x"> 4588</i>
+                </p:commandLink>
+                <p:commandLink class="container-op btn-int">
+                    <i class="fas fa-star"> favoritado</i>
+                </p:commandLink>
+                <p:commandLink class="container-op btn-int">
+                    <i class="fas fa-angle-down fa-2x"> 1044</i>
+                </p:commandLink>
+            </div>
+
+            <div class="a-block-container">
+                <div class="container-op post-interacoes">
+                    <div class="comentar">
+
+                    </div>
+                    <div class="comentarios">
+
+                    </div>
                 </div>
+            </div>
+
+
+
         </ui:insert>
     </h:body>
 </html>

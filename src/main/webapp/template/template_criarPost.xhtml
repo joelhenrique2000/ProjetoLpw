@@ -32,7 +32,7 @@
                     </li>
                     <li class="btnMenuScroll" id="marcadores">
                         <i class="icon fas fa-tags"></i>
-                        <p>Marcadores</p>
+                        <p>Categoria</p>
                     </li>
                     <li class="btnMenuScroll" id="fotoDeCapa">
                         <i class="icon fas fa-image"></i>
@@ -61,8 +61,10 @@
                         <p:inputText required="false" />
                     </div>
                     <div class="form-click" id="form-marcadores">
-                        <p:outputLabel value="Digite os marcadores(pressione enter para confirmar)"/>
-                        <p:chips required="false" />
+                        <p:selectOneMenu id="console" value="#{principalBean.marcadorEnum}">
+                            <f:selectItem itemLabel="Selecione..." itemValue="" noSelectionOption="true" />
+                            <f:selectItems value="#{principalBean.marcadorEnum}" />
+                        </p:selectOneMenu>
                     </div>
                     <div class="form-click" id="form-fotoDeCapa">
                         <p:fileUpload  required="false" mode="simple" label="Escolher imagem do computador" skinSimple="false"/>
