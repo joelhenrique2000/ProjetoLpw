@@ -27,14 +27,20 @@
                     <p:outputLabel class="title-perfil" value="Joel Henrique Silva Santos"/>
                 </div>
                 <div class="menu-scroll-perfil">
-                    <p:commandButton value="Home"/>
-                    <p:commandButton value="Amigos"/>
-                    <p:commandButton value="Favoritos"/>
+                    <div id="btn_home" class="btn-interacoes">
+                        <i class="fas fa-home"></i><a >Home</a>
+                    </div>
+                    <div id="btn_amigos" class="btn-interacoes">
+                        <i class="fas fa-user-friends"></i><a >Amigos</a>
+                    </div>
+                    <div id="btn_favoritos" class="btn-interacoes">
+                        <i class="fas fa-star"></i><a >Favoritos</a>
+                    </div>
                 </div>
             </div>
             
             <h:form rendered="true" class="timeline">
-                <div class="article-container">
+                <div id="home" class="article-container">
                     <div class="article">
                         <p:dataScroller value="#{postBean.posts()}" var="post" chunkSize="10" class="post">
                             <div class="meta-info-perfil">
@@ -53,9 +59,84 @@
                         </p:dataScroller>
                     </div>
                 </div>
+                
+                <div id="amigos" class="article-container">
+                    <div class="article">
+                        <p:dataScroller value="#{postBean.posts()}" var="post" chunkSize="10" class="post">
+                            <div class="meta-info-perfil">
+                                <h:graphicImage class="foto" value="/resources/images/perfil.jpg" />
+                                <div class="meta-info-nome">
+                                    <p:commandLink class="nome" action="#{homeBean.toPerfilAuth()}">#{post.autor.nome}</p:commandLink>
+                                </div>
+                                <div class="button-command">
+                                </div>
+                            </div>
+                        </p:dataScroller>
+                    </div>
+                </div>
+                
+                <div id="favoritos" class="article-container">
+                    <div class="article">
+                        <p:dataScroller value="#{postBean.posts()}" var="post" chunkSize="10" class="post">
+                            <div class="meta-info-perfil">
+                                <h:graphicImage class="foto" value="/resources/images/perfil.jpg" />
+                                <div class="meta-info-nome">
+                                    <p:commandLink class="nome" action="#{homeBean.toPerfilAuth()}">#{post.autor.nome}</p:commandLink>
+                                    <div class="tags">#{post.categoria}</div>
+                                </div>
+                                <div class="button-command">
+                                </div>
+                            </div>
+                            <p:commandLink action="#{homeBean.toPost()}" class="foto-capa">
+                                <h:graphicImage value="#{post.fotoCapa}" />
+                            </p:commandLink>
+                            <p:commandLink action="#{homeBean.toPost()}" class="titulo-container">
+                                <div class="titulo">#{post.titulo.length() > 60 ? post.titulo.substring(0, 60).concat("...") : post.titulo}</div>
+                            </p:commandLink>
+                        </p:dataScroller>
+                    </div>
+                </div>
             </h:form>
             
         </ui:insert>
+    <script>
+       
+        let $btn_home = document.getElementById("btn_home");
+        let $btn_amigos = document.getElementById("btn_amigos");
+        let $btn_favoritos = document.getElementById("btn_favoritos");
+        
+        let $home = document.getElementById("home");
+        let $amigos = document.getElementById("amigos");
+        let $favoritos = document.getElementById("favoritos");
+
+        
+        function zerarTudo() {
+            $home.style.display = 'none';
+            $amigos.style.display = 'none';
+            $favoritos.style.display = 'none';
+        }
+
+
+        $amigos.style.display = 'none';
+        $favoritos.style.display = 'none';
+
+
+        $btn_home.addEventListener('click', function () {
+            zerarTudo();
+            $home.style.display = 'flex';
+        });
+
+        $btn_amigos.addEventListener('click', function () {
+            zerarTudo();
+            $amigos.style.display = 'flex';
+        });
+
+        $btn_favoritos.addEventListener('click', function () {
+            zerarTudo();
+            $favoritos.style.display = 'flex';
+        });
+
+    </script>
     </h:body>
 </html>
 
