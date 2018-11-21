@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <link rel="icon" href="/resources/images/blogy_1.png" />
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1"></meta>
+        <title>Configuração</title>
+<h:outputStylesheet name="./css/IncludeHeaderPrincipal.css"/>
+        <style>
+            * {
+                margin: 0;
+            }
+            .container-config {
+                height: calc(100vh - 90px);
+                width: 100vw;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                background: #e9ebee;
+            }
+
+            .aba {
+                width: 500px;
+                height: 350px;
+                background: red;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background: #ffffff;
+                border: 1px solid #dddfe2;
+
+            }
+            .aba tbody tr {
+                margin-bottom: 10px;
+            }
+            .aba tbody {display: flex;
+
+flex-direction: column;
+
+
+
+align-items: center;}
+
+
+        </style>
+
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous"></link>
+    </h:head>
+    <h:body>
+        <ui:insert name="top">
+            <ui:include src="/include/include_menuHeaderMain.xhtml"/>
+        </ui:insert>
+
+        <ui:insert name="content" class="container">
+        <h:form class="container-config">
+            <h:panelGrid class="aba">
+                    <h:panelGroup>
+                        <p:outputLabel value="Nome"/>
+                    </h:panelGroup>
+                    <h:panelGroup>
+                        <p:inputText value="Joel Henrique Silva Santos"/>
+                    </h:panelGroup>
+                    <h:panelGroup>
+                        <p:outputLabel value="Foto"/>
+                    </h:panelGroup>
+                    <h:panelGroup>
+                        <p:fileUpload  required="false" mode="simple" label="Escolher imagem do computador" skinSimple="true"/>
+                    </h:panelGroup>
+
+                    <h:panelGroup>
+                        <p:outputLabel value="Senha"/>
+                    </h:panelGroup>
+                    <h:panelGroup>
+                        <p:password  placeholder="Senha antiga"/>
+                        <p:password  placeholder="Senha nova"/>
+                    </h:panelGroup>
+                    <h:panelGroup>
+                        <p:commandButton styleClass="btn-block" action="#{loginBean.toPageHome()}" value="Salvar" /><p:commandLink action="#{loginBean.toPageHome()}" value="Voltar" />
+                        <p:messages autoUpdate="true"/>
+                    </h:panelGroup>
+                    <h:panelGroup>
+                        
+                    </h:panelGroup>
+                </h:panelGrid>
+        </h:form> 
+        </ui:insert>
+        
+ 
+    </h:body>
+</html>
+

@@ -8,6 +8,8 @@ and open the template in the editor.
     Author     : Joel
 */
 
+
+
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 /* 
     Created on : 20/10/2018, 23:50:20
@@ -94,6 +96,12 @@ and open the template in the editor.
     .container-input {
         margin: 0 30px;
     }
+    a {
+    color: #FFF;
+}
+.container-logo {
+    margin-bottom: 20px;
+}
 }
 
 /* Small devices (landscape phones, 576px and up) */
@@ -119,6 +127,12 @@ and open the template in the editor.
         margin: 0 30px;
         width: 522px;
     }
+    a {
+    color: #FFF;
+}
+.container-logo {
+    margin-bottom: 20px;
+}
 }
 
 /* Medium devices (tablets, 768px and up) */

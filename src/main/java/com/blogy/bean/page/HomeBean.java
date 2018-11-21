@@ -25,6 +25,22 @@ public class HomeBean {
         }
     }
     
+    public void toPostAuth() {
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("../authUser/post.xhtml");
+        } catch (IOException ex) {
+            Logger.getLogger(CriarPost.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void toConfig() {
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("../authUser/configuracao.xhtml");
+        } catch (IOException ex) {
+            Logger.getLogger(CriarPost.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     public void toPerfil() {
         try {
             FacesContext.getCurrentInstance().getExternalContext().redirect("../anotherUser/perfil.xhtml");

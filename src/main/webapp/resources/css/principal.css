@@ -70,7 +70,44 @@ body {
 /* Extra small devices (portrait phones, less than 576px) */
 @media (max-width: 575.98px) {
 
-
+    .container-acao-post {
+        background: red;
+        width: 98vw;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .btn-int {
+        color: #FFF;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-decoration: none;
+        height: 50px;
+    }
+    
+    .btn-int:nth-child(1) {
+        background: #15c39a !important;
+    }
+    .btn-int:nth-child(2) {
+        background: #f5c33b !important;
+    }
+    .btn-int:nth-child(3) {
+        background: #f25268 !important;
+    }
+    
+    .btn-int:nth-child(1):hover {
+        background: #13ac88 !important;
+    }
+    .btn-int:nth-child(2):hover {
+        background: #f4bc23 !important;
+    }
+    .btn-int:nth-child(3):hover {
+        background: #f03a53 !important;
+    }
+    
+    
+    
     .article {
         display: flex;
         justify-content: center;
@@ -219,34 +256,7 @@ body {
         border-radius: 5px 5px 5px 5px / 5px 5px 5px 5px;
         overflow:auto; 
     }
-    .btn-int {
-        
-        color: #FFF;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-decoration: none;
-    }
-    
-    .btn-int:nth-child(1) {
-        background: #15c39a !important;
-    }
-    .btn-int:nth-child(2) {
-        background: #f5c33b !important;
-    }
-    .btn-int:nth-child(3) {
-        background: #f25268 !important;
-    }
-    
-    .btn-int:nth-child(1):hover {
-        background: #13ac88 !important;
-    }
-    .btn-int:nth-child(2):hover {
-        background: #f4bc23 !important;
-    }
-    .btn-int:nth-child(3):hover {
-        background: #f03a53 !important;
-    }
+
     
     
 }
@@ -254,27 +264,21 @@ body {
 /* Small devices (landscape phones, 576px and up) */
 @media (min-width: 576px) and (max-width: 767.98px) { 
 
-    .a-block-container {
+    .container-acao-post {
+        background: red;
         width: 98vw;
         display: flex;
-        justify-content: center;
+        flex-direction: column;
     }
-    .container-op {
-        width: 80%;
-        margin: 15px;
-        padding: 20px;
-        border-radius: 5px 5px 5px 5px / 5px 5px 5px 5px;
-        overflow:auto; 
-    }
+    
     .btn-int {
-        
         color: #FFF;
         display: flex;
         justify-content: center;
         align-items: center;
         text-decoration: none;
+        height: 50px;
     }
-    
     .btn-int:nth-child(1) {
         background: #15c39a !important;
     }
@@ -294,6 +298,15 @@ body {
     .btn-int:nth-child(3):hover {
         background: #f03a53 !important;
     }
+    
+    .container-op {
+        width: 80%;
+        margin: 15px;
+        padding: 20px;
+        border-radius: 5px 5px 5px 5px / 5px 5px 5px 5px;
+        overflow:auto; 
+    }
+
     
     .article {
         display: flex;
@@ -428,11 +441,43 @@ body {
 
 /* Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) and (max-width: 991.98px) { 
-    .a-block-container {
+    .container-acao-post {
         width: 98vw;
         display: flex;
+        flex-direction: row;
         justify-content: center;
     }
+    
+    .btn-int {
+        color: #FFF;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-decoration: none;
+        height: 50px;
+        width: 200px;
+    }
+    .btn-int:nth-child(1) {
+        background: #15c39a !important;
+    }
+    .btn-int:nth-child(2) {
+        background: #f5c33b !important;
+    }
+    .btn-int:nth-child(3) {
+        background: #f25268 !important;
+    }
+    
+    .btn-int:nth-child(1):hover {
+        background: #13ac88 !important;
+    }
+    .btn-int:nth-child(2):hover {
+        background: #f4bc23 !important;
+    }
+    .btn-int:nth-child(3):hover {
+        background: #f03a53 !important;
+    }
+    
+    
     .container-op {
         width: 80%;
         margin: 15px;
@@ -605,27 +650,22 @@ body {
 /* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) and (max-width: 1199.98px) { 
 
-    .a-block-container {
+    .container-acao-post {
         width: 98vw;
         display: flex;
+        flex-direction: row;
         justify-content: center;
     }
-    .container-op {
-        width: 80%;
-        margin: 15px;
-        padding: 20px;
-        border-radius: 5px 5px 5px 5px / 5px 5px 5px 5px;
-        overflow:auto; 
-    }
+    
     .btn-int {
-        
         color: #FFF;
         display: flex;
         justify-content: center;
         align-items: center;
         text-decoration: none;
+        height: 50px;
+        width: 200px;
     }
-    
     .btn-int:nth-child(1) {
         background: #15c39a !important;
     }
@@ -645,6 +685,14 @@ body {
     .btn-int:nth-child(3):hover {
         background: #f03a53 !important;
     }
+    .container-op {
+        width: 80%;
+        margin: 15px;
+        padding: 20px;
+        border-radius: 5px 5px 5px 5px / 5px 5px 5px 5px;
+        overflow:auto; 
+    }
+
 
 
 
@@ -902,27 +950,22 @@ body {
 /* Extra large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) {
     
-    .a-block-container {
+    .container-acao-post {
         width: 98vw;
         display: flex;
+        flex-direction: row;
         justify-content: center;
     }
-    .container-op {
-        width: 80%;
-        margin: 15px;
-        padding: 11px;
-        border-radius: 5px 5px 5px 5px / 5px 5px 5px 5px;
-        overflow:auto; 
-    }
+    
     .btn-int {
-        
         color: #FFF;
         display: flex;
         justify-content: center;
         align-items: center;
         text-decoration: none;
+        height: 50px;
+        width: 200px;
     }
-    
     .btn-int:nth-child(1) {
         background: #15c39a !important;
     }
@@ -932,6 +975,7 @@ body {
     .btn-int:nth-child(3) {
         background: #f25268 !important;
     }
+
     
     .btn-int:nth-child(1):hover {
         background: #13ac88 !important;
@@ -942,6 +986,15 @@ body {
     .btn-int:nth-child(3):hover {
         background: #f03a53 !important;
     }
+
+    .container-op {
+        width: 80%;
+        margin: 15px;
+        padding: 11px;
+        border-radius: 5px 5px 5px 5px / 5px 5px 5px 5px;
+        overflow:auto; 
+    }
+
     
     
     .container-menu {

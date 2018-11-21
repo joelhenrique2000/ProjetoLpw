@@ -5,8 +5,9 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
+        <link rel="icon" href="/resources/images/blogy_1.png" />
         <meta name="viewport" content="initial-scale=1, maximum-scale=1"></meta>
-        <title>AdminAuth</title>
+        <title>Joel Henrique</title>
         <h:outputStylesheet name="./css/oPerfil.css"/>
         <h:outputStylesheet name="./css/IncludeHeaderPrincipal.css"/>
 
@@ -66,7 +67,7 @@
                             <div class="meta-info-perfil">
                                 <h:graphicImage class="foto" value="/resources/images/perfil.jpg" />
                                 <div class="meta-info-nome">
-                                    <p:commandLink class="nome" action="#{homeBean.toPerfilAuth()}">#{post.autor.nome}</p:commandLink>
+                                    <p:commandLink class="nome" action="#{homeBean.toPerfil()}">#{post.autor.nome}</p:commandLink>
                                 </div>
                                 <div class="button-command">
                                 </div>

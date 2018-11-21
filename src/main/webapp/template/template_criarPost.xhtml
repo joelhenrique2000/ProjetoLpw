@@ -7,8 +7,9 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <h:head>
+        <link rel="icon" href="/resources/images/blogy_1.png" />
         <meta name="viewport" content="initial-scale=1, maximum-scale=1"></meta>
-        <title>Postar</title>
+        <title>Criar post</title>
         <h:outputStylesheet name="./css/TeamplatePaginaCriarPost.css"/>
         <h:outputStylesheet name="./css/IncludeHeaderPrincipal.css"/>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous"></link>
@@ -38,7 +39,7 @@
                         <i class="icon fas fa-image"></i>
                         <p>Foto de capa</p>
                     </li>
-                    <h:commandLink action="#{criarPost.mostrarParaOMundo()}" class="btnMenuScroll" id="publicar">
+                    <h:commandLink action="#{loginBean.toPageHome()}" class="btnMenuScroll" id="publicar">
                         <i class="icon fas fa-cloud-upload-alt"></i>
                         <p>Publicar</p>
                     </h:commandLink>
@@ -61,10 +62,13 @@
                         <p:inputText required="false" />
                     </div>
                     <div class="form-click" id="form-marcadores">
-                        <p:selectOneMenu id="console" value="#{principalBean.marcadorEnum}">
-                            <f:selectItem itemLabel="Selecione..." itemValue="" noSelectionOption="true" />
-                            <f:selectItems value="#{principalBean.marcadorEnum}" />
-                        </p:selectOneMenu>
+        <p:selectOneMenu id="console" >
+            <f:selectItem itemLabel="Categoria 1" itemValue="" />
+            <f:selectItem itemLabel="Categoria 2" itemValue="Xbox One" />
+            <f:selectItem itemLabel="Categoria 3" itemValue="PS4" />
+            <f:selectItem itemLabel="Categoria 4" itemValue="Wii U" />
+        </p:selectOneMenu>
+ 
                     </div>
                     <div class="form-click" id="form-fotoDeCapa">
                         <p:fileUpload  required="false" mode="simple" label="Escolher imagem do computador" skinSimple="false"/>

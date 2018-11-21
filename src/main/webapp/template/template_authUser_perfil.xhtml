@@ -5,8 +5,9 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
+        <link rel="icon" href="/resources/images/blogy_1.png" />
         <meta name="viewport" content="initial-scale=1, maximum-scale=1"></meta>
-        <title>AdminAuth</title>
+        <title>Joel Henrique</title>
         <h:outputStylesheet name="./css/oPerfil.css"/>
         <h:outputStylesheet name="./css/IncludeHeaderPrincipal.css"/>
 
@@ -35,6 +36,9 @@
                     <div id="btn_favoritos" class="btn-interacoes">
                         <i class="fas fa-star"></i><a >Favoritos</a>
                     </div>
+                    <p:commandLink action="#{homeBean.toConfig()}" style="text-decoration: none;" class="btn-interacoes">
+                        <i class="fas fa-cog"></i>Configurações<a ></a>
+                    </p:commandLink>
                 </div>
             </div>
             
@@ -57,10 +61,10 @@
                                     </p:commandLink>
                                 </div>
                             </div>
-                            <p:commandLink action="#{homeBean.toPost()}" class="foto-capa">
+                            <p:commandLink action="#{homeBean.toPostAuth()}" class="foto-capa">
                                 <h:graphicImage value="#{post.fotoCapa}" />
                             </p:commandLink>
-                            <p:commandLink action="#{homeBean.toPost()}" class="titulo-container">
+                            <p:commandLink action="#{homeBean.toPostAuth()}" class="titulo-container">
                                 <div class="titulo">#{post.titulo.length() > 60 ? post.titulo.substring(0, 60).concat("...") : post.titulo}</div>
                             </p:commandLink>
                         </p:dataScroller>
@@ -73,7 +77,7 @@
                             <div class="meta-info-perfil">
                                 <h:graphicImage class="foto" value="/resources/images/perfil.jpg" />
                                 <div class="meta-info-nome">
-                                    <p:commandLink class="nome" action="#{homeBean.toPerfilAuth()}">#{post.autor.nome}</p:commandLink>
+                                    <p:commandLink class="nome" action="#{homeBean.toPerfil()}">#{post.autor.nome}</p:commandLink>
                                 </div>
                                 <div class="button-command">
                                     <p:commandLink>
