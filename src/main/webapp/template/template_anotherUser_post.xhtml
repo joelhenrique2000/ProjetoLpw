@@ -40,21 +40,21 @@
 
                 <div class="post-block">
                     <p:outputPanel >
-                        <div class="title-p">Berserk</div>
-                        <h:outputText value="#{criarPost.text2}" escape="false" />
+                        <div class="title-p">#{post.postagem().titulo}</div>
+                        <h:outputText value="#{post.postagem().counteudo}" escape="false" />
                     </p:outputPanel>
                 </div>
 
             </div>
 
             <div class="container-acao-post">
-                <p:commandLink class="btn-int">
+                <p:commandLink action="#{post.like()}" class="btn-int">
                     <i class="fas fa-angle-up fa-2x" style="margin-right: 10px;"></i>Like
                 </p:commandLink>
-                <p:commandLink class="btn-int">
+                <p:commandLink action="#{post.favoritar()}" class="btn-int">
                     <i class="fas fa-star" style="margin-right: 10px;"></i> favoritar
                 </p:commandLink>
-                <p:commandLink class="btn-int">
+                <p:commandLink action="#{post.deslike()}" class="btn-int">
                     <i class="fas fa-angle-down fa-2x" style="margin-right: 10px;"></i> Deslike
                 </p:commandLink>
             </div>

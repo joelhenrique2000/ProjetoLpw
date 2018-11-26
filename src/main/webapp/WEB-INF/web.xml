@@ -23,15 +23,12 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <!--./autenticacao/index.xhtml     faces/index.xhtml  -->
+        <!--./autenticacao/index.xhtml     faces/index.xhtml  ./page/home.xhtml-->
         <welcome-file>./page/home.xhtml</welcome-file>
     </welcome-file-list>
     <error-page>
         <error-code>404</error-code>
         <location>/error/404.xhtml</location>
     </error-page>
-    <error-page>
-        <error-code>500</error-code>
-        <location>/error/500.xhtml</location>
-    </error-page>
+
 </web-app>

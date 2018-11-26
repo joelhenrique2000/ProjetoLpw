@@ -74,7 +74,7 @@
                         <p:fileUpload  required="false" mode="simple" label="Escolher imagem do computador" skinSimple="false"/>
                     </div>
 
-                    <p:textEditor widgetVar="editor1" value="#{criarPost.text}"/>
+                    <p:textEditor id="campo-texto" widgetVar="editor1" value="#{criarPost.text}"/>
 
                 </div>
             </h:form>
@@ -129,6 +129,40 @@
             zerarTudo();
 
         });
+        
+        // add style hashtag input
+        
+        var textoNaoFormatado = document.querySelector('#j_idt679\\:j_idt681 > input:nth-child(3)').value;
+        
+        
+        
+        
+        document.querySelector('.ql-editor').addEventListener('keypress',function() {
+            console.log('keyup');
+            var texto = document.querySelector('.ql-editor > p:nth-child(1)').innerHTML;
+            var arrayMatch = texto.match(/( .?#[^#]{1,15})/g);
+            var textoFormatado = texto.replace(/( .?#[^#]{1,15})/g, function (x) {
+                return '(PATO)';
+            }); 
+            
+            
+            
+            
+            var et1 = document.querySelector('.ql-editor > p:nth-child(1)').innerHTML;
+            var et2 = et1.replace(/( .?#[^#]{1,15})/g, function (x) {
+                return '<strong> SUPER</strong>';
+            }); 
+            document.querySelector('.ql-editor > p:nth-child(1)').innerHTML = et2;
+            
+            
+            
+            
+            
+            textoFormatado = document.querySelector('.ql-editor > p:nth-child(1)').innerHTML.replace(/( .?#[^#]{1,15})/g, function (x) {
+                return "("+x+")";
+            }); 
+            
+        }, false);
 
     </script>
 </html>

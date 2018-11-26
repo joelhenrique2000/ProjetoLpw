@@ -4,7 +4,8 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <link rel="icon" href="/resources/images/blogy_1.png" />
         <title>Categoria</title>
@@ -19,111 +20,140 @@
             <ui:include src="/include/include_menuHeaderMain.xhtml"/>
         </ui:insert>
         <ui:insert name="content" >
-            <h:form class="container-menu meta-info">
-                <ui:repeat value="#{principalBean.categorias()}" var="categoria">
-                    <p:commandLink action="#{homeBean.toCategoria()}" class="btn-menu" value="#{categoria}"/>
-                </ui:repeat>
-            </h:form>
+            
+            <!-- Inicio do menu mobile das hashtags -->
+            <div class="container-menu meta-info">
+                <ui:repeat value="#{hashTag.trendTopics()}" var="tag">
+                    <h:link class="btn-menu" value="#{tag.nome}" outcome="/page/categoria.xhtml">
+                        <f:param name="trend" value="#{tag.nome}"/>
+                    </h:link>
+                </ui:repeat>               
+            </div>
+            <!-- Fim do menu mobile das hashtags -->
 
             <div class="timeline">
                 <div class="article-container">
   
                     <div class="article">
                         
-                        <p:dataScroller value="#{postBean.posts()}" var="post" chunkSize="10" class="post">
+                        <p:dataScroller value="#{hashTag.postTimeline()}" var="post" chunkSize="20" class="post">
                             <div class="meta-info-perfil">
-                                <h:graphicImage class="foto" value="/resources/images/perfil.jpg" />
+                                <h:graphicImage class="foto" value="#{hashTag.fotoAutorPorId(post.idAutor)}" />
                                 <div class="meta-info-nome">
-                                    <p:commandLink class="nome" action="#{homeBean.toPerfil()}">#{post.autor.nome}</p:commandLink>
+                                    <p:link class="nome" outcome="/anotherUser/perfil.xhtml">
+                                        #{hashTag.nomeAutorPorId(post.idAutor)}
+                                        <f:param name="perfil" value="#{post.idAutor}"/>
+                                    </p:link>
                                 </div>
                             </div>
-                            <p:commandLink action="#{homeBean.toPost()}" class="foto-capa">
+                            <p:link outcome="/page/post.xhtml" class="foto-capa">
                                 <h:graphicImage value="#{post.fotoCapa}" />
-                            </p:commandLink>
-                            <p:commandLink action="#{homeBean.toPost()}" class="titulo-container">
+                                <f:param name="post" value="#{post.id}"/>
+                            </p:link>
+                            <p:link outcome="/page/post.xhtml" class="titulo-container">
                                 <div class="titulo">#{post.titulo.length() > 60 ? post.titulo.substring(0, 60).concat("...") : post.titulo}</div>
-                            </p:commandLink>
+                                <f:param name="post" value="#{post.id}"/>
+                            </p:link>
                         </p:dataScroller>
                     </div>
                 </div>
 
-
                 <nav class="nav-menu">
+                    <!-- Inicio do melhores posts -->
                     <div  class="plug-card">
                         <div class="plug-card-title">
                             As melhores postagens
                         </div>
-                        <ui:repeat value="#{postBean.listaMelhoresPostagens()}" var="post2">
+                        <ui:repeat value="#{hashTag.melhoresPostagens()}" var="post">
                             <div class="plug-card-container m-post">
 
                                 <div class="m-meta-info-perfil">
-                                    <h:graphicImage class="m-foto" value="/resources/images/perfil.jpg" />
+                                    <h:graphicImage class="m-foto" value="#{hashTag.fotoAutorPorId(post.idAutor)}" />
                                     <div class="m-meta-info-nome">
-                                        <p:commandLink action="#{homeBean.toPerfil()}" class="m-nome">#{post2.autor.nome}</p:commandLink>
+                                        <p:link outcome="/anotherUser/perfil.xhtml" class="m-nome">
+                                            #{hashTag.nomeAutorPorId(post.idAutor)}
+                                            <f:param name="perfil" value="#{post.idAutor}"/>
+                                        </p:link>
                                     </div>
                                 </div>
-                                <p:commandLink action="#{homeBean.toPost()}" class="m-foto-capa">
-                                    <h:graphicImage value="#{post2.fotoCapa}" />
-                                </p:commandLink>
-                                <p:commandLink action="#{homeBean.toPost()}" class="m-titulo-container">
-                                    <div class="m-titulo">#{post2.titulo.length() > 30 ? post2.titulo.substring(0, 30).concat("...") : post2.titulo}</div>
-                                </p:commandLink>
+                                <p:link outcome="/page/post.xhtml" class="m-foto-capa">
+                                    <h:graphicImage value="#{post.fotoCapa}" />
+                                    <f:param name="post" value="#{post.id}"/>
+                                </p:link>
+                                <p:link outcome="/page/post.xhtml" class="m-titulo-container">
+                                    <div class="m-titulo">#{post.titulo.length() > 30 ? post.titulo.substring(0, 30).concat("...") : post.titulo}</div>
+                                    <f:param name="post" value="#{post.id}"/>
+                                </p:link>
 
                             </div>
                         </ui:repeat>
                     </div>
-
-                    <div class="plug-card">
+                    <!-- Fim do melhores posts -->
+                    
+                    <!-- Inicio do posts mais curtidos -->
+                    <div  class="plug-card">
                         <div class="plug-card-title">
-                            Mais vistas
+                            Mais curtidos
                         </div>
-                        <ui:repeat value="#{postBean.listaPostsMaisVistos()}" var="post2">
+                        <ui:repeat value="#{hashTag.maisCurtidos()}" var="post">
                             <div class="plug-card-container m-post">
 
                                 <div class="m-meta-info-perfil">
-                                    <h:graphicImage class="m-foto" value="/resources/images/perfil.jpg" />
+                                    <h:graphicImage class="m-foto" value="#{hashTag.fotoAutorPorId(post.idAutor)}" />
                                     <div class="m-meta-info-nome">
-                                        <p:commandLink action="#{homeBean.toPerfil()}" class="m-nome">#{post2.autor.nome}</p:commandLink>
+                                        <p:link outcome="/anotherUser/perfil.xhtml" class="m-nome">
+                                            #{hashTag.nomeAutorPorId(post.idAutor)}
+                                            <f:param name="perfil" value="#{post.idAutor}"/>
+                                        </p:link>
                                     </div>
                                 </div>
-                                <p:commandLink action="#{homeBean.toPost()}" class="m-foto-capa">
-                                    <h:graphicImage value="#{post2.fotoCapa}" />
-                                </p:commandLink>
-                                <p:commandLink action="#{homeBean.toPost()}" class="m-titulo-container">
-                                    <div class="m-titulo">#{post2.titulo.length() > 30 ? post2.titulo.substring(0, 30).concat("...") : post2.titulo}</div>
-                                </p:commandLink>
+                                <p:link outcome="/page/post.xhtml" class="m-foto-capa">
+                                    <h:graphicImage value="#{post.fotoCapa}" />
+                                    <f:param name="post" value="#{post.id}"/>
+                                </p:link>
+                                <p:link outcome="/page/post.xhtml" class="m-titulo-container">
+                                    <div class="m-titulo">#{post.titulo.length() > 30 ? post.titulo.substring(0, 30).concat("...") : post.titulo}</div>
+                                    <f:param name="post" value="#{post.id}"/>
+                                </p:link>
 
                             </div>
                         </ui:repeat>
                     </div>
-
-                    <div class="plug-card">
+                    <!-- Fim do posts mais curtidos -->
+                    
+                    <!-- Inicio do posts para você -->
+                    <div  class="plug-card">
                         <div class="plug-card-title">
-                            Para você 
+                            Para você
                         </div>
-                        <ui:repeat value="#{postBean.listaPostAleatorios()}" var="post2">
+                        <ui:repeat value="#{hashTag.paraVoce()}" var="post">
                             <div class="plug-card-container m-post">
 
                                 <div class="m-meta-info-perfil">
-                                    <h:graphicImage class="m-foto" value="/resources/images/perfil.jpg" />
+                                    <h:graphicImage class="m-foto" value="#{hashTag.fotoAutorPorId(post.idAutor)}" />
                                     <div class="m-meta-info-nome">
-                                        <p:commandLink action="#{homeBean.toPerfil()}" class="m-nome">#{post2.autor.nome}</p:commandLink>
+                                        <p:link outcome="/anotherUser/perfil.xhtml" class="m-nome">
+                                            #{hashTag.nomeAutorPorId(post.idAutor)}
+                                            <f:param name="perfil" value="#{post.idAutor}"/>
+                                        </p:link>
                                     </div>
                                 </div>
-                                <p:commandLink action="#{homeBean.toPost()}" class="m-foto-capa">
-                                    <h:graphicImage value="#{post2.fotoCapa}" />
-                                </p:commandLink>
-                                <p:commandLink action="#{homeBean.toPost()}" class="m-titulo-container">
-                                    <div class="m-titulo">#{post2.titulo.length() > 30 ? post2.titulo.substring(0, 30).concat("...") : post2.titulo}</div>
-                                </p:commandLink>
+                                <p:link outcome="/page/post.xhtml" class="m-foto-capa">
+                                    <h:graphicImage value="#{post.fotoCapa}" />
+                                    <f:param name="post" value="#{post.id}"/>
+                                </p:link>
+                                <p:link outcome="/page/post.xhtml" class="m-titulo-container">
+                                    <div class="m-titulo">#{post.titulo.length() > 30 ? post.titulo.substring(0, 30).concat("...") : post.titulo}</div>
+                                    <f:param name="post" value="#{post.id}"/>
+                                </p:link>
 
                             </div>
                         </ui:repeat>
                     </div>
+                    <!-- Fim do posts para você -->
                 </nav>
+               
             </div>
-
-
         </ui:insert>
     </h:body>
 </html>

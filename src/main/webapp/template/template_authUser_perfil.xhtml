@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <link rel="icon" href="/resources/images/blogy_1.png" />
         <meta name="viewport" content="initial-scale=1, maximum-scale=1"></meta>
@@ -45,44 +46,42 @@
             <h:form rendered="true" class="timeline">
                 <div id="home" class="article-container">
                     <div class="article">
-                        <p:dataScroller value="#{postBean.posts()}" var="post" chunkSize="10" class="post">
+                        <p:dataScroller value="#{authPerfil.meusPosts()}" var="postVar" chunkSize="20" class="post">
                             <div class="meta-info-perfil">
-                                <h:graphicImage class="foto" value="/resources/images/perfil.jpg" />
+                                <h:graphicImage class="foto" value="#{authPerfil.fotoAutorPorId(postVar.idAutor)}" />
                                 <div class="meta-info-nome">
-                                    <p:commandLink class="nome" action="#{homeBean.toPerfilAuth()}">#{post.autor.nome}</p:commandLink>
-                                    <div class="tags">#{post.categoria}</div>
+                                    <p:link class="nome" outcome="/anotherUser/perfil.xhtml">
+                                        #{authPerfil.nomeAutorPorId(postVar.idAutor)}
+                                        <f:param name="perfil" value="#{postVar.idAutor}"/>
+                                    </p:link>
                                 </div>
-                                <div class="button-command">
-                                    <p:commandLink action="#{headerMenuMainBean.toPageCriarPost()}">
-                                        <i class="fas fa-edit" style="margin-right: 7px"></i>
-                                    </p:commandLink>
-                                    <p:commandLink>
-                                        <i class="far fa-trash-alt"></i>
-                                    </p:commandLink>
+                                <div class="button-command container-acoes-perfil">
+                                    <h:commandLink style="margin-right: 10px" action="#{authPerfil.editPost()}"><i class="fas fa-edit"></i></h:commandLink>
+                                    <h:commandLink action="#{authPerfil.deletePost()}"><i class="fas fa-trash-alt"></i></h:commandLink>
                                 </div>
                             </div>
-                            <p:commandLink action="#{homeBean.toPostAuth()}" class="foto-capa">
-                                <h:graphicImage value="#{post.fotoCapa}" />
-                            </p:commandLink>
-                            <p:commandLink action="#{homeBean.toPostAuth()}" class="titulo-container">
-                                <div class="titulo">#{post.titulo.length() > 60 ? post.titulo.substring(0, 60).concat("...") : post.titulo}</div>
-                            </p:commandLink>
+                            <p:link outcome="/page/post.xhtml" class="foto-capa">
+                                <h:graphicImage value="#{postVar.fotoCapa}" />
+                                <f:param name="post" value="#{postVar.id}"/>
+                            </p:link>
+                            <p:link outcome="/page/post.xhtml" class="titulo-container">
+                                <div class="titulo">#{postVar.titulo.length() > 60 ? postVar.titulo.substring(0, 60).concat("...") : postVar.titulo}</div>
+                                <f:param name="post" value="#{postVar.id}"/>
+                            </p:link>
                         </p:dataScroller>
                     </div>
                 </div>
-                
+ 
                 <div id="amigos" class="article-container">
                     <div class="article">
-                        <p:dataScroller value="#{postBean.posts()}" var="post" chunkSize="10" class="post">
+                        <p:dataScroller value="#{authPerfil.meusAmigos()}" var="user" chunkSize="10" class="post">
                             <div class="meta-info-perfil">
                                 <h:graphicImage class="foto" value="/resources/images/perfil.jpg" />
                                 <div class="meta-info-nome">
-                                    <p:commandLink class="nome" action="#{homeBean.toPerfil()}">#{post.autor.nome}</p:commandLink>
+                                    <p:commandLink  class="nome" action="#{homeBean.toPerfil()}">#{user.nome}</p:commandLink>
                                 </div>
-                                <div class="button-command">
-                                    <p:commandLink>
-                                        <i class="fas fa-user-minus"></i>
-                                    </p:commandLink>
+                                <div class="button-command container-acoes-perfil">
+                                    <h:commandLink style="margin-right: 10px" action="#{authPerfil.desfazerAmizade()}"><i class="fas fa-user-minus"></i></h:commandLink>
                                 </div>
                             </div>
                         </p:dataScroller>
@@ -91,25 +90,27 @@
                 
                 <div id="favoritos" class="article-container">
                     <div class="article">
-                        <p:dataScroller value="#{postBean.posts()}" var="post" chunkSize="10" class="post">
+                        <p:dataScroller value="#{anotherPerfil.postFavoritos()}" var="postVar" chunkSize="20" class="post">
                             <div class="meta-info-perfil">
-                                <h:graphicImage class="foto" value="/resources/images/perfil.jpg" />
+                                <h:graphicImage class="foto" value="#{principal.fotoAutorPorId(postVar.idAutor)}" />
                                 <div class="meta-info-nome">
-                                    <p:commandLink class="nome" action="#{homeBean.toPerfil()}">#{post.autor.nome}</p:commandLink>
-                                    <div class="tags">#{post.categoria}</div>
+                                    <p:link class="nome" outcome="/anotherUser/perfil.xhtml">
+                                        #{principal.nomeAutorPorId(postVar.idAutor)}
+                                        <f:param name="perfil" value="#{postVar.idAutor}"/>
+                                    </p:link>
                                 </div>
-                                <div class="button-command">
-                                    <p:commandLink>
-                                        <i class="fas fa-star" style="color: #ffcb00; margin-right: 7px"></i>
-                                    </p:commandLink>
+                                <div class="button-command container-acoes-perfil">
+                                    <h:commandLink style="margin-right: 10px"  action="#{authPerfil.desfavoritarPost()}"><i class="fas fa-minus"></i></h:commandLink>
                                 </div>
                             </div>
-                            <p:commandLink action="#{homeBean.toPost()}" class="foto-capa">
-                                <h:graphicImage value="#{post.fotoCapa}" />
-                            </p:commandLink>
-                            <p:commandLink action="#{homeBean.toPost()}" class="titulo-container">
-                                <div class="titulo">#{post.titulo.length() > 60 ? post.titulo.substring(0, 60).concat("...") : post.titulo}</div>
-                            </p:commandLink>
+                            <p:link outcome="/page/post.xhtml" class="foto-capa">
+                                <h:graphicImage value="#{postVar.fotoCapa}" />
+                                <f:param name="post" value="#{postVar.id}"/>
+                            </p:link>
+                            <p:link outcome="/page/post.xhtml" class="titulo-container">
+                                <div class="titulo">#{postVar.titulo.length() > 60 ? postVar.titulo.substring(0, 60).concat("...") : postVar.titulo}</div>
+                                <f:param name="post" value="#{postVar.id}"/>
+                            </p:link>
                         </p:dataScroller>
                     </div>
                 </div>
