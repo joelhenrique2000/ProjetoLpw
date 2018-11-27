@@ -22,7 +22,7 @@
                 <p:graphicImage name="./images/spinner.gif" />
             </p:dialog>
             
-            <h:form class="container">
+            <h:form id="login-form" class="container">
                 <div class="container-logo">
                     <h:graphicImage class="logo logo-mobile" value="/resources/images/blogy_branco.png" />
                     <p:outputLabel class="header-text logo-desktop" value="Entrar" />
@@ -30,18 +30,18 @@
                 <div class="container-input">
                     <h:panelGrid>
                         <h:panelGroup>
-                            <p:inputText placeholder="Digite seu e-mail" />
+                            <p:inputText value="#{loginUsuario.email}" placeholder="Digite seu e-mail" />
                         </h:panelGroup>
                         <h:panelGroup>
-                            <p:password placeholder="Digite a sua senha"/>
+                            <p:password value="#{loginUsuario.senha}" placeholder="Digite a sua senha"/>
                         </h:panelGroup>
                         <h:panelGroup>
-                            <p:commandButton styleClass="btn-block" action="#{loginBean.toPageHome()}" value="Entrar" />
+                            <p:commandButton styleClass="btn-block" action="#{loginUsuario.fazerLogin()}" value="Entrar" />
                             <p:messages autoUpdate="true"/>
                         </h:panelGroup>
                         <h:panelGroup>
-                            <p:commandLink action="#{loginBean.toPageCadastrar()}" value="Cadastrar" />
-                            <p:commandLink action="#{loginBean.toPageResertPass()}" value="Esqueceu a senha?" />
+                            <p:commandLink action="#{redirect.cadastrar()}" value="Cadastrar" />
+                            <p:commandLink action="#{redirect.resetarSenha()}" value="Esqueceu a senha?" />
                         </h:panelGroup>
                     </h:panelGrid>
                 </div>

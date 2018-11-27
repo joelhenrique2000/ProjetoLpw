@@ -20,7 +20,6 @@ import javax.faces.bean.ManagedBean;
 public class Principal implements Serializable {
 
     private String pato;
-    private UsuarioEntity user = new UsuarioEntity();
     
     private PathPage a;
 
@@ -147,9 +146,6 @@ public class Principal implements Serializable {
         return lPost;
     }
     
-    public void salvar() {
-            new UsuarioDAO().create(this.user);
-    }
 
     public List<PostEntity> paraVoce() {
         List<PostEntity> lPost = new ArrayList<>();
@@ -178,13 +174,5 @@ public class Principal implements Serializable {
         this.pato = pato;
     }
 
-    public UsuarioEntity getUser() {
-        return user;
-    }
-
-    public void setUser(UsuarioEntity user) {
-        this.user = user;
-    }
-    
     
 }

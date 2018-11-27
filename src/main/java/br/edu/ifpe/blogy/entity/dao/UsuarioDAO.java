@@ -1,51 +1,139 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package br.edu.ifpe.blogy.entity.dao;
 
+import br.edu.ifpe.blogy.connection.ConnectionFactory;
 import br.edu.ifpe.blogy.entity.UsuarioEntity;
 import br.edu.ifpe.blogy.entity.dao.impl.IUsuarioDAO;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 
 public class UsuarioDAO implements IUsuarioDAO{
 
-    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("meuPU");
-    private EntityManager entityManager;
-    
     public UsuarioDAO() {
-        this.entityManager = emf.createEntityManager();
+        
     }
     
     @Override
     public UsuarioEntity create(UsuarioEntity usuario) {
+
+        EntityManager em = new ConnectionFactory().getConnection();
         
-        this.entityManager.getTransaction().begin();
-        this.entityManager.persist(usuario);
-        this.entityManager.getTransaction().commit();
+        try {
+            em.getTransaction().begin();
+            em.persist(usuario);
+            em.getTransaction().commit();
+        } catch (Exception ex) {
+            em.getTransaction().rollback();
+        } finally {
+            em.close();
+        }
         
         return usuario;
     }
 
     @Override
     public List<UsuarioEntity> read() {
-        return null;
+        
+        EntityManager em = new ConnectionFactory().getConnection();
+        List<UsuarioEntity> users = null;
+
+        try {
+            users = em.createQuery("from UsuarioEntity u").getResultList();
+        } catch (Exception ex) {
+            System.err.println(ex);
+            users = new ArrayList<>();
+        } finally {
+            em.close();
+        }
+
+        return users;
+        
     }
 
     @Override
     public UsuarioEntity update(UsuarioEntity usuario) {
-        return null;
+        EntityManager em = new ConnectionFactory().getConnection();
+
+        // se não defini id [FALTA ESTUDAR ESSA PARADA]
+        if (usuario.getId() != 0) {
+            try {
+                em.getTransaction().begin();
+                em.merge(usuario);
+                em.getTransaction().commit();
+            } catch (Exception ex) {
+                em.getTransaction().rollback();
+            } finally {
+                em.close();
+            }
+
+            return usuario;
+        } else {
+            return null;
+        }
     }
 
     @Override
     public UsuarioEntity delete(UsuarioEntity usuario) {
-        return null;
+
+        EntityManager em = new ConnectionFactory().getConnection();
+        
+        try {
+            em.getTransaction().begin();
+            em.remove(usuario);
+            em.getTransaction().commit();
+        } catch (Exception ex) {
+            em.getTransaction().rollback();
+        } finally {
+            em.close();
+        }
+        
+        return usuario;
     }
     
-    
+    public UsuarioEntity buscarPorEmail(String email) {
+        EntityManager em = new ConnectionFactory().getConnection();
+        List<UsuarioEntity> users = null;
+
+        try {
+            users = em.createQuery("from Usuario users").getResultList();
+        } catch (Exception ex) {
+            System.err.println(ex);
+        } finally {
+            em.close();
+        }
+
+        for (Iterator<UsuarioEntity> it = users.iterator(); it.hasNext();) {
+            UsuarioEntity user = it.next();
+            if (user.getEmail().equals(email)) {
+                return user;
+            }
+        }
+
+        return null;
+    }
+
+    public UsuarioEntity buscar(String email, String senha) {
+
+        EntityManager em = new ConnectionFactory().getConnection();
+        List<UsuarioEntity> users = null;
+
+        try {
+            users = em.createQuery("from Usuario u").getResultList();
+        } catch (Exception ex) {
+            System.err.println(ex);
+        } finally {
+            em.close();
+        }
+
+        for (UsuarioEntity user : users) {
+            if (user.getEmail().equals(email) && user.getSenha().equals(senha)) {
+                return user;
+            }
+        }
+
+        return null;
+    }
     
 }
