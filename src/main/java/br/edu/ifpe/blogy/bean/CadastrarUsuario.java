@@ -1,16 +1,22 @@
 package br.edu.ifpe.blogy.bean;
 
+import br.edu.ifpe.blogy.connection.ConnectionFactory;
 import br.edu.ifpe.blogy.entity.HashTagEntity;
 import br.edu.ifpe.blogy.entity.PostEntity;
 import br.edu.ifpe.blogy.entity.UsuarioEntity;
 import br.edu.ifpe.blogy.entity.dao.UsuarioDAO;
 import br.edu.ifpe.blogy.utils.PathPage;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 /**
  *
@@ -32,8 +38,27 @@ public class CadastrarUsuario implements Serializable {
 
        // } else {
 
-            new UsuarioDAO().create(this.user);
-
+       
+       EntityManagerFactory emf = Persistence.createEntityManagerFactory("meuPU");
+       EntityManager em = emf.createEntityManager();
+        
+        try {
+            em.getTransaction().begin();
+            em.persist(user);
+            em.getTransaction().commit();
+        } catch (Exception ex) {
+            em.getTransaction().rollback();
+        } finally {
+            em.close();
+        }
+       
+       
+          //  new UsuarioDAO().create(this.user);
+          //                  try {
+           //         FacesContext.getCurrentInstance().getExternalContext().redirect("../auth/login.xhtml");
+           //     } catch (IOException ex) {
+           //         System.out.println("ERROR");
+           //     }
        // }
 
     }

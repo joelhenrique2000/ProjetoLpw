@@ -12,6 +12,7 @@ import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
@@ -20,7 +21,7 @@ import javax.servlet.http.HttpSession;
  * @author Joel
  */
 @ManagedBean
-@RequestScoped
+@SessionScoped
 public class LoginUsuario implements Serializable {
 
     private UsuarioEntity usuario = null;
