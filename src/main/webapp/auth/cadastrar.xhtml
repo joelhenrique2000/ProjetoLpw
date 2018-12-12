@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <link rel="icon" href="/resources/images/blogy_1.png" />
         <title>Cadastre no Blogy</title>        
@@ -30,13 +31,13 @@
                 <div class="container-input">
                     <h:panelGrid>
                         <h:panelGroup>
-                            <p:inputText value="#{cadastrarUsuario.user.nome}" placeholder="Digite seu nome comleto" />
+                            <p:inputText id="nome" value="#{cadastrarUsuario.user.nome}"  placeholder="Digite seu nome comleto" />
                         </h:panelGroup>
                         <h:panelGroup>
-                            <p:inputText value="#{cadastrarUsuario.user.email}" placeholder="Digite seu email"/>
+                            <p:inputText id="email" value="#{cadastrarUsuario.user.email}"placeholder="Digite seu email"/>
                         </h:panelGroup>
                         <h:panelGroup>
-                            <p:password value="#{cadastrarUsuario.user.senha}" placeholder="Digite a sua senha"/>
+                            <p:password id="senha" value="#{cadastrarUsuario.user.senha}" placeholder="Digite a sua senha"/>
                         </h:panelGroup>
                         <h:panelGroup>
                             <p:commandButton styleClass="btn-block" action="#{cadastrarUsuario.salvar}" value="Cadastrar" />

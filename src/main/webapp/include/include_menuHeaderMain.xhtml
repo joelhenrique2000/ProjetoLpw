@@ -9,7 +9,7 @@
     </h:head>
     <h:body>
         <ui:composition>
-            
+            #{loginUsuario.validarFilter()}
             <div class="nav-container">
                 
                 <!-- Logo do projeto -->
@@ -30,7 +30,7 @@
                     
                     <!-- deslogar -->
                     <h:form id="header-deslogar">
-                        <h:commandLink action="#{headerMenu.deslogar()}">
+                        <h:commandLink action="#{loginUsuario.deslogar()}">
                             <i class="fas fa-sign-out-alt fa-2x"></i>
                         </h:commandLink>
                     </h:form>

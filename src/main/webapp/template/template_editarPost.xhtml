@@ -1,0 +1,160 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <link rel="icon" href="/resources/images/blogy_1.png" />
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1"></meta>
+        <title>Criar post</title>
+        <h:outputStylesheet name="./css/TeamplatePaginaCriarPost.css"/>
+        <h:outputStylesheet name="./css/IncludeHeaderPrincipal.css"/>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous"></link>
+
+    </h:head>
+
+    <h:body>
+        <ui:insert name="top">
+            <ui:include src="/include/include_menuHeaderMain.xhtml"/>
+        </ui:insert>
+
+        <ui:insert name="content" >
+
+            <h:form class="container" enctype="multipart/form-data">
+                <p:growl id="messages" showDetail="true" />
+
+                <div class="container-menu">
+                    <li class="btnMenuScroll" id="titulo">
+                        <i class="icon fas fa-align-left"></i>
+                        <p>Titulo</p>
+                    </li>
+                    <li class="btnMenuScroll" id="fotoDeCapa">
+                        <i class="icon fas fa-image"></i>
+                        <p>Foto de capa</p>
+                    </li>
+                    <h:commandLink action="#{editarPost.atualizar()}" class="btnMenuScroll" id="publicar">
+                        <i class="icon fas fa-cloud-upload-alt"></i>
+                        <p>atualizar</p>
+                    </h:commandLink>
+                    <h:commandLink class="btnMenuScroll" id="cancelar" action="#{redirect.home()}">
+                        <i class="icon fas fa-times"></i>
+                        <p>Cancelar</p>
+                    </h:commandLink>
+                </div>
+                
+                <p:messages autoUpdate="true"/>
+                
+                <div class="container-textEditor">
+
+
+
+                    <div class="form-click" id="form-titulo">
+                        <p:outputLabel styleClass="input-block" value="Digite o titulo da postagem"/>
+                        <p:inputText id="titulo" value="#{editarPost.post.titulo}" required="false" />
+                    </div>
+
+                    <div class="form-click" id="form-fotoDeCapa">
+                        <h:inputFile value="#{editarPost.file}"/>
+                    </div>
+
+                    <p:textEditor id="campo-texto" widgetVar="editor1" value="#{editarPost.texto}"/>
+
+                </div>
+            </h:form>
+
+
+        </ui:insert>
+    </h:body>
+
+    <script>
+        let $titulo = document.getElementById("titulo");
+        let $fotoDaCapa = document.getElementById("fotoDeCapa");
+        let $publicar = document.getElementById("publicar");
+        let $cancelar = document.getElementById("cancelar");
+
+        let $formTitulo = document.getElementById("form-titulo");
+        let $formFotoDaCapa = document.getElementById("form-fotoDeCapa");
+
+        function zerarTudo() {
+            $formTitulo.style.display = 'none';
+            $formFotoDaCapa.style.display = 'none';
+        }
+
+        $formTitulo.style.display = 'none';
+        $formFotoDaCapa.style.display = 'none';
+
+
+        $titulo.addEventListener('click', function () {
+            console.log('#{pato.nome}');
+            zerarTudo();
+            $formTitulo.style.display = 'flex';
+        });
+
+        $fotoDaCapa.addEventListener('click', function () {
+            zerarTudo();
+            $formFotoDaCapa.style.display = 'flex';
+        });
+
+        $publicar.addEventListener('click', function () {
+            zerarTudo();
+        });
+
+        $cancelar.addEventListener('click', function () {
+            zerarTudo();
+
+        });
+        
+        
+        
+        let texto = document.querySelector('.ql-editor').textContent;
+        let arrayMatch = texto.match(/( .?#[^#]{1,15} )/g);
+        #{postar.setRegex(arrayMatch[0])}
+        
+        
+        
+        
+        
+        
+        // add style hashtag input
+        /*
+        var textoNaoFormatado = document.querySelector('#j_idt679\\:j_idt681 > input:nth-child(3)').value;
+        
+        
+        
+        
+        document.querySelector('.ql-editor').addEventListener('keypress',function() {
+            console.log('keyup');
+            var texto = document.querySelector('.ql-editor > p:nth-child(1)').innerHTML;
+            var arrayMatch = texto.match(/( .?#[^#]{1,15})/g);
+            var textoFormatado = texto.replace(/( .?#[^#]{1,15})/g, function (x) {
+                return '(PATO)';
+            }); 
+            
+            
+            
+            
+            var et1 = document.querySelector('.ql-editor > p:nth-child(1)').innerHTML;
+            var et2 = et1.replace(/( .?#[^#]{1,15})/g, function (x) {
+                return '<strong> SUPER</strong>';
+            }); 
+            document.querySelector('.ql-editor > p:nth-child(1)').innerHTML = et2;
+            
+            
+            
+            
+            
+            textoFormatado = document.querySelector('.ql-editor > p:nth-child(1)').innerHTML.replace(/( .?#[^#]{1,15})/g, function (x) {
+                return "("+x+")";
+            }); 
+            
+        }, false);
+*/
+    </script>
+</html>
+
+
+
+

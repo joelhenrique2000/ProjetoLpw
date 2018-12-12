@@ -51,6 +51,29 @@ public class UsuarioDAO implements IUsuarioDAO{
         return users;
         
     }
+    
+    public UsuarioEntity usuarioPorId(Long id) {
+        EntityManager em = new ConnectionFactory().getConnection();
+        List<UsuarioEntity> todosUsuarios = null;
+
+        try {
+            todosUsuarios = em.createQuery("from UsuarioEntity u").getResultList();
+
+            for (UsuarioEntity user : todosUsuarios) {
+                if ((id == user.getId())) {
+                    return user;
+                }
+            }
+
+        } catch (Exception ex) {
+            System.err.println(ex);
+        } finally {
+            em.close();
+
+        }
+
+        return null;
+    }
 
     @Override
     public UsuarioEntity update(UsuarioEntity usuario) {

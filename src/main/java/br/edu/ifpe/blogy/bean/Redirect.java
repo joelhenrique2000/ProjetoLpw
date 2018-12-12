@@ -31,6 +31,7 @@ public class Redirect implements Serializable {
             FacesContext.getCurrentInstance().getExternalContext().redirect("../auth/login.xhtml");
         } catch (IOException ex) {
             System.out.println("ERROR");
+            //error404();
         }
     }
     
@@ -39,6 +40,7 @@ public class Redirect implements Serializable {
             FacesContext.getCurrentInstance().getExternalContext().redirect("../auth/cadastrar.xhtml");
         } catch (IOException ex) {
             System.out.println("ERROR");
+            //error404();
         }
     }
     
@@ -47,6 +49,42 @@ public class Redirect implements Serializable {
             FacesContext.getCurrentInstance().getExternalContext().redirect("../auth/resetar_senha.xhtml");
         } catch (IOException ex) {
             System.out.println("ERROR");
+            //error404();
+        }
+    }
+    
+    public void home() {
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("../page/home.xhtml");
+        } catch (IOException ex) {
+            System.out.println("ERROR");
+            //error404();
+        }
+    }
+
+    public void error404() {
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("../error/404.xhtml");
+        } catch (IOException ex) {
+            System.out.println("ERROR");
+        }
+    }
+
+    void perfil() {
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("../authUser/perfil.xhtml");
+        } catch (IOException ex) {
+            System.out.println("ERROR");
+            //error404();
+        }
+    }
+
+    public void editarPost() {
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("../page/editar.xhtml");
+        } catch (IOException ex) {
+            System.out.println("ERROR");
+            //error404();
         }
     }
 

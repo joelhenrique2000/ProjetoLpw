@@ -9,10 +9,13 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
@@ -24,11 +27,21 @@ import javax.servlet.http.HttpSession;
 @SessionScoped
 public class LoginUsuario implements Serializable {
 
-    private UsuarioEntity usuario = null;
+    private static UsuarioEntity usuario = null;
     private String email = "";
     private String senha = "";
-    
+
     public LoginUsuario() {
+    }
+
+    public void deslogar() {
+        usuario = null;
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+            FacesContext.getCurrentInstance().getExternalContext().redirect("../auth/login.xhtml");
+        } catch (IOException ex) {
+            System.out.println("ERROR");
+        }
     }
 
     public void fazerLogin() {
@@ -38,22 +51,19 @@ public class LoginUsuario implements Serializable {
         for (UsuarioEntity u : user) {
             if (u.getEmail().equals(email) && u.getSenha().equals(senha)) {
 
-                //HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-                //session.setAttribute("usuario", u);
+                HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+                session.setAttribute("usuario", u);
                 usuario = u;
 
-                try {
-                    FacesContext.getCurrentInstance().getExternalContext().redirect("../page/home.xhtml");
-                } catch (IOException ex) {
-                    System.out.println("ERROR");
-                }
+                new Redirect().home();
+
             }
         }
 
         FacesContext.getCurrentInstance().addMessage("login-form:xxx", new FacesMessage("Email ou senha errada"));
 
     }
-    
+
     public UsuarioEntity getUsuario() {
         return usuario;
     }
@@ -77,7 +87,16 @@ public class LoginUsuario implements Serializable {
     public void setSenha(String senha) {
         this.senha = senha;
     }
-    
-   
 
+    public void validarFilter() {
+        if(usuario == null){
+           try {
+                FacesContext.getCurrentInstance().getExternalContext().redirect("./auth/login.xhtml");
+            } catch (IOException ex) {
+                
+           }
+        }
+            
+    }
+    
 }

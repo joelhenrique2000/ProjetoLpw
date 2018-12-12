@@ -4,6 +4,54 @@
         <param-name>javax.faces.PROJECT_STAGE</param-name>
         <param-value>Development</param-value>
     </context-param>
+    <context-param>
+        <param-name>primefaces.UPLOADER</param-name>
+        <param-value>auto</param-value>
+    </context-param>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <!-- Inicio do filtro UsuarioFilter -->
+    <filter>
+        <description>Caso o usuario não logado entre em alguma pagina que tenha autorização</description>
+        <filter-name>UsuarioFilter</filter-name>
+        <filter-class>br.edu.ifpe.blogy.filter.UsuarioFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>UsuarioFilter</filter-name>
+        <url-pattern>/page/*,/include/*,/template/*,/anotherUser/*,/authUser/*</url-pattern>
+    </filter-mapping>
+     <!-- Fim do filtro UsuarioFilter -->
+    
+     <!-- Inicio do filtro LoginFilter -->
+    <filter>
+        <description>Caso o usuario logado não entre novamente na página de login</description>
+        <filter-name>LoginFilter</filter-name>
+        <filter-class>br.edu.ifpe.blogy.filter.LoginFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>LoginFilter</filter-name>
+        <url-pattern>/auth/*</url-pattern>
+    </filter-mapping>
+     <!-- Fim do filtro LoginFilter -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <servlet>
         <servlet-name>Faces Servlet</servlet-name>
         <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
@@ -30,5 +78,4 @@
         <error-code>404</error-code>
         <location>/error/404.xhtml</location>
     </error-page>
-
 </web-app>

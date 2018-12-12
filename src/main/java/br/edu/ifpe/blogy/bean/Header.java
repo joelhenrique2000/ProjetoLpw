@@ -62,13 +62,7 @@ public class Header implements Serializable {
         }
     }
     
-    public void deslogar() {
-        try {
-            FacesContext.getCurrentInstance().getExternalContext().redirect("../auth/login.xhtml");
-        } catch (IOException ex) {
-            System.out.println("ERROR");
-        }
-    }
+
     
     public void toPagePerfilAuth() {
         try {

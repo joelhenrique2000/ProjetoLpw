@@ -21,19 +21,20 @@ body {
 }
 
 .btn-menu {
-    background: #0095ff !important;
+    background: #f2f2f2 !important;
     height: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #FFF;
-    border-radius: 10px 10px 10px 10px / 10px 10px 10px 10px;
+    color: #818181;
+    border-radius: 5px / 5px;
     padding: 10px 28px;
-    border: 1px solid #0077cc;
+    border: 1px solid #dadada;
+    font-size: 20px;
 }
 
 .meta-info a:hover {
-    background: #0077cc !important;
+    background: #e9e7e7 !important;
 }
 
 .post-block {
@@ -250,7 +251,7 @@ body {
         justify-content: center;
     }
     .container-op {
-        width: 80%;
+        
         margin: 15px;
         padding: 20px;
         border-radius: 5px 5px 5px 5px / 5px 5px 5px 5px;
@@ -300,7 +301,7 @@ body {
     }
     
     .container-op {
-        width: 80%;
+        
         margin: 15px;
         padding: 20px;
         border-radius: 5px 5px 5px 5px / 5px 5px 5px 5px;
@@ -479,7 +480,7 @@ body {
     
     
     .container-op {
-        width: 80%;
+       
         margin: 15px;
         padding: 20px;
         border-radius: 5px 5px 5px 5px / 5px 5px 5px 5px;
@@ -553,6 +554,7 @@ body {
         overflow: auto;
         white-space: nowrap;
         color: #333;
+        justify-content: center;
     }
 
     .container-menu li {
@@ -686,7 +688,7 @@ body {
         background: #f03a53 !important;
     }
     .container-op {
-        width: 80%;
+     
         margin: 15px;
         padding: 20px;
         border-radius: 5px 5px 5px 5px / 5px 5px 5px 5px;
@@ -734,6 +736,7 @@ body {
         overflow: auto;
         white-space: nowrap;
         color: #333;
+        justify-content: center;
     }
 
     .container-menu li {
@@ -988,7 +991,7 @@ body {
     }
 
     .container-op {
-        width: 80%;
+        
         margin: 15px;
         padding: 11px;
         border-radius: 5px 5px 5px 5px / 5px 5px 5px 5px;
@@ -1010,6 +1013,7 @@ body {
         overflow: auto;
         white-space: nowrap;
         color: #333;
+        justify-content: center;
     }
 
     .container-menu a {
@@ -1065,7 +1069,7 @@ body {
         align-items: center;
         border-radius: 3px;
         border: 1px solid #a8a8a8;
-        height: 9150px;
+        /*height: 9150px;*/
     }
     .plug-card-title {
         width: 100%;

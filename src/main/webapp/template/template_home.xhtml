@@ -22,7 +22,7 @@
             <!-- Inicio do menu mobile das hashtags -->
             <div class="container-menu meta-info">
                 <ui:repeat value="#{principal.trendTopics()}" var="tag">
-                    <h:link class="btn-menu" value="#{tag.nome}" outcome="/page/categoria.xhtml">
+                    <h:link class="btn-menu" value="##{tag.nome}" outcome="/page/categoria.xhtml">
                         <f:param name="trend" value="#{tag.nome}"/>
                     </h:link>
                 </ui:repeat>               
@@ -32,23 +32,23 @@
                 <!-- inicio do Timeline posts -->
                 <div class="article-container">
                     <div class="article">
-                        <p:dataScroller value="#{principal.postTimeline()}" var="post" chunkSize="20" class="post">
+                        <p:dataScroller value="#{principal.postTimeline()}" var="postVar" chunkSize="20" class="post">
                             <div class="meta-info-perfil">
-                                <h:graphicImage class="foto" value="#{principal.fotoAutorPorId(post.idAutor)}" />
+                                <h:graphicImage class="foto" value="#{principal.fotoAutorPorId(postVar.idAutor)}" />
                                 <div class="meta-info-nome">
                                     <p:link class="nome" outcome="/anotherUser/perfil.xhtml">
-                                        #{principal.nomeAutorPorId(post.idAutor)}
-                                        <f:param name="perfil" value="#{post.idAutor}"/>
+                                        #{principal.nomeAutorPorId(postVar.idAutor)}
+                                        <f:param name="perfil" value="#{postVar.idAutor}"/>
                                     </p:link>
                                 </div>
                             </div>
                             <p:link outcome="/page/post.xhtml" class="foto-capa">
-                                <h:graphicImage value="#{post.fotoCapa}" />
-                                <f:param name="post" value="#{post.id}"/>
+                                <h:graphicImage value="#{postVar.fotoCapa}" />
+                                <f:param name="post" value="#{postVar.id}"/>
                             </p:link>
                             <p:link outcome="/page/post.xhtml" class="titulo-container">
-                                <div class="titulo">#{post.titulo.length() > 60 ? post.titulo.substring(0, 60).concat("...") : post.titulo}</div>
-                                <f:param name="post" value="#{post.id}"/>
+                                <div class="titulo">#{postVar.titulo.length() > 60 ? postVar.titulo.substring(0, 60).concat("...") : postVar.titulo}</div>
+                                <f:param name="post" value="#{postVar.id}"/>
                             </p:link>
                         </p:dataScroller>
                     </div>
@@ -116,37 +116,6 @@
                         </ui:repeat>
                     </div>
                     <!-- Fim do posts mais curtidos -->
-                    
-                    <!-- Inicio do posts para você -->
-                    <div  class="plug-card">
-                        <div class="plug-card-title">
-                            Para você
-                        </div>
-                        <ui:repeat value="#{principal.paraVoce()}" var="post">
-                            <div class="plug-card-container m-post">
-
-                                <div class="m-meta-info-perfil">
-                                    <h:graphicImage class="m-foto" value="#{principal.fotoAutorPorId(post.idAutor)}" />
-                                    <div class="m-meta-info-nome">
-                                        <p:link outcome="/anotherUser/perfil.xhtml" class="m-nome">
-                                            #{principal.nomeAutorPorId(post.idAutor)}
-                                            <f:param name="perfil" value="#{post.idAutor}"/>
-                                        </p:link>
-                                    </div>
-                                </div>
-                                <p:link outcome="/page/post.xhtml" class="m-foto-capa">
-                                    <h:graphicImage value="#{post.fotoCapa}" />
-                                    <f:param name="post" value="#{post.id}"/>
-                                </p:link>
-                                <p:link outcome="/page/post.xhtml" class="m-titulo-container">
-                                    <div class="m-titulo">#{post.titulo.length() > 30 ? post.titulo.substring(0, 30).concat("...") : post.titulo}</div>
-                                    <f:param name="post" value="#{post.id}"/>
-                                </p:link>
-
-                            </div>
-                        </ui:repeat>
-                    </div>
-                    <!-- Fim do posts para você -->
                 </nav>
             </div>
         </ui:insert>

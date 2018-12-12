@@ -5,20 +5,16 @@
  */
 package br.edu.ifpe.blogy.bean;
 
-import br.edu.ifpe.blogy.entity.HashTagEntity;
 import br.edu.ifpe.blogy.entity.PostEntity;
 import br.edu.ifpe.blogy.entity.UsuarioEntity;
-import br.edu.ifpe.blogy.utils.PathPage;
-import java.io.IOException;
-import javax.inject.Named;
-import javax.enterprise.context.SessionScoped;
+import br.edu.ifpe.blogy.entity.dao.PostDAO;
+import br.edu.ifpe.blogy.entity.dao.UsuarioDAO;
+import br.edu.ifpe.blogy.utils.RelativePath;
+import br.edu.ifpe.blogy.utils.Utils;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
-import javax.faces.context.FacesContext;
 
 /**
  *
@@ -28,125 +24,82 @@ import javax.faces.context.FacesContext;
 @ManagedBean
 public class AuthPerfil implements Serializable {
 
-    private String pato;
-    
-    private PathPage a;
+    private Utils utils;
+    private RelativePath relativePath;
 
-    public PathPage getA() {
-        return a;
-    }
-
-    public void setA(PathPage a) {
-        this.a = a;
-    }
-
-    
-    
     public AuthPerfil() {
-        pato = "marreco";
     }
 
-
+    public void deletarPost(Long id) {
+        PostEntity post = new PostDAO().postPorId(id);
+        new PostDAO().delete(post);
+        new Utils().deletarArquivoEmTemp(new RelativePath().resources()+post.getCounteudo());
+        new Utils().deletarArquivoEmTemp(new RelativePath().webapp()+post.getFotoCapa());
+        new Redirect().perfil();
+    }
     
+
     public String fotoAutorPorId(Long id) {
-
-        UsuarioEntity user = new UsuarioEntity();
-
-        user.setId(id);
-        user.setNome("Joel Henrique Silva Santos " + id);
-
-        return user.getFotoPerfil();
+        return new PostDAO().fotoAutorPorId(id);
     }
 
     public String nomeAutorPorId(Long id) {
-
-        UsuarioEntity user = new UsuarioEntity();
-
-        user.setId(id);
-        user.setNome("Joel Henrique Silva Santos " + id);
-
-        return user.getNome();
+        return new PostDAO().nomeAutorPorId(id);
     }
 
     public List<PostEntity> meusPosts() {
-
-        List<PostEntity> lPost = new ArrayList<>();
-
-        for (int i = 0; i < 400; i++) {
-            PostEntity post = new PostEntity();
-
-            post.setId(i);
-            post.setCounteudo("blá blá blá");
-            post.setCurtidasNegativas(545);
-            post.setCurtidasPositivas(574);
-            post.setIdAutor(i);
-            post.setTitulo("Lorem impsum dolor samer " + i);
-
-            lPost.add(post);
-        }
-
-        return lPost;
-
+        List<PostEntity> posts = new PostDAO().postUsuarioAuth();
+        return posts;
     }
 
     public List<UsuarioEntity> meusAmigos() {
-        List<UsuarioEntity> lAmigos = new ArrayList<>();
-
-        for (int i = 0; i < 400; i++) {
-            UsuarioEntity user = new UsuarioEntity();
-
-            user.setEmail("joelhenrique@gmail.com");
-            user.setNome("Joel Henrique " + i);
-
-            lAmigos.add(user);
+        List<Long> idAmigos = new LoginUsuario().getUsuario().getIdSeguindos();
+        List<UsuarioEntity> todosUsuarios = new UsuarioDAO().read();
+        List<UsuarioEntity> amigos = new ArrayList<>();
+        for(long idAmigo : idAmigos) {
+            for(UsuarioEntity user : todosUsuarios) {
+                if(idAmigo == user.getId()) {
+                    amigos.add(user);
+                }
+            }
         }
-
-        return lAmigos;
-
+        return amigos;
+    }
+    public void desfavoritarPost(Long id) {
+        UsuarioEntity user = new LoginUsuario().getUsuario();
+        List<Long> postsFavoritoUser = user.getIdPostFavoritos();
+        postsFavoritoUser.remove(id);
+        user.setIdPostFavoritos(postsFavoritoUser);
+        
+        new UsuarioDAO().update(user);
     }
     
     public List<PostEntity> postFavoritos() {
-        List<PostEntity> lPost = new ArrayList<>();
-
-        for (int i = 0; i < 400; i++) {
-            PostEntity post = new PostEntity();
-
-            post.setId(i);
-            post.setCounteudo("blá blá blá");
-            post.setCurtidasNegativas(545);
-            post.setCurtidasPositivas(574);
-            post.setIdAutor(i);
-            post.setTitulo("Lorem impsum dolor samer " + i);
-
-            lPost.add(post);
+        List<Long> listaFavoritos = new LoginUsuario().getUsuario().getIdPostFavoritos();
+        List<PostEntity> todosPosts = new PostDAO().read();
+        
+        List<PostEntity> posts = new ArrayList<>();
+        
+        for(long favorito : listaFavoritos) {
+            for(PostEntity post : todosPosts) {
+                if(favorito == post.getId()) {
+                    posts.add(post);
+                }
+            }
         }
-
-        return lPost;
-
+        
+        return posts;
     }
 
-    public void editPost() {
-        System.out.println("IIaaeeeeEEEeeee");
+    public void desfazerAmizade(UsuarioEntity usuarioView) {
+            UsuarioEntity userLogado = new LoginUsuario().getUsuario();
+            List<Long> idAmigosUsuarioLogado = userLogado.getIdSeguindos();
+            idAmigosUsuarioLogado.remove(usuarioView.getId());
+            new UsuarioDAO().update(userLogado);
+            
+            List<Long> idAmigosUsuarioView = usuarioView.getIdSeguindos();
+            idAmigosUsuarioView.remove(userLogado.getId());
+            new UsuarioDAO().update(usuarioView);
     }
-    
-    public void deletePost() {
-        System.out.println("IIaaeeeeEEEeeee");
-    }
-    
-    public void desfazerAmizade() {
-        System.out.println("IIaaeeeeEEEeeee");
-    }
-    
-    public void desfavoritarPost() {
-        System.out.println("IIaaeeeeEEEeeee");
-    }
-    
-
-    public String getPato() {
-        return pato;
-    }
-
-    public void setPato(String pato) {
-        this.pato = pato;
-    }
+ 
 }

@@ -4,8 +4,12 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
+        <f:metadata>
+            <f:viewParam name="post" value="#{post.idP}" />
+        </f:metadata>
         <link rel="icon" href="/resources/images/blogy_1.png" />
         <title>Post 1</title>
         <meta name="viewport" content="initial-scale=1, maximum-scale=1"></meta>
@@ -15,33 +19,31 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous"></link>
         <style>
             body {
-
                 display: flex;
                 flex-direction: column;
                 align-items: center;
             }
-
             .a-block-container {
                 width: 85vw;
             }
-
             .nav-container {
                 padding: 14px 0;
             }
         </style>
+
     </h:head>
     <h:body>
+        #{post.init()}
         <ui:insert name="top">
             <ui:include src="/include/include_menuHeaderMain.xhtml"/>
         </ui:insert>
         <ui:insert name="content" class="container-post" >
 
             <div class="post-block-container">
-
                 <div class="post-block">
                     <p:outputPanel >
                         <div class="title-p">#{post.postagem().titulo}</div>
-                        <h:outputText value="#{post.postagem().counteudo}" escape="false" />
+                        <h:outputText value="#{post.textoPost()}" escape="false" />
                     </p:outputPanel>
                 </div>
 
@@ -49,29 +51,32 @@
 
             <div class="container-acao-post">
                 <p:commandLink action="#{post.like()}" class="btn-int">
-                    <i class="fas fa-angle-up fa-2x" style="margin-right: 10px;"></i>Like
+                    <i class="fas fa-angle-up fa-2x" style="margin-right: 10px;"></i> #{post.postagem().curtidasPositivas}
                 </p:commandLink>
-                <p:commandLink action="#{post.favoritar()}" class="btn-int">
-                    <i class="fas fa-star" style="margin-right: 10px;"></i> favoritar
+                <p:commandLink action="#{post.favoritar()}" disabled="#{post.btnFavoritarActive()}" class="btn-int">
+                    <i class="fas fa-star" style="margin-right: 10px;"></i> #{post.msgFavoritar()}
                 </p:commandLink>
                 <p:commandLink action="#{post.deslike()}" class="btn-int">
-                    <i class="fas fa-angle-down fa-2x" style="margin-right: 10px;"></i> Deslike
+                    <i class="fas fa-angle-down fa-2x" style="margin-right: 10px;"></i>#{post.postagem().curtidasNegativas}
                 </p:commandLink>
             </div>
 
             <div class="a-block-container">
                 <div class="container-op post-interacoes">
-                    <div class="comentar">
-
-                    </div>
                     <div class="comentarios">
-
+                        <div id="disqus_thread"></div>
+                        <script>
+                            (function () {
+                                var d = document, s = d.createElement('script');
+                                s.src = 'https://blogy-3.disqus.com/embed.js';
+                                s.setAttribute('data-timestamp', +new Date());
+                                (d.head || d.body).appendChild(s);
+                            })();
+                        </script>
+                        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
                     </div>
                 </div>
             </div>
-
-
-
         </ui:insert>
     </h:body>
 </html>

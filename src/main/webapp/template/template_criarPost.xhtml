@@ -31,15 +31,11 @@
                         <i class="icon fas fa-align-left"></i>
                         <p>Titulo</p>
                     </li>
-                    <li class="btnMenuScroll" id="marcadores">
-                        <i class="icon fas fa-tags"></i>
-                        <p>Categoria</p>
-                    </li>
                     <li class="btnMenuScroll" id="fotoDeCapa">
                         <i class="icon fas fa-image"></i>
                         <p>Foto de capa</p>
                     </li>
-                    <h:commandLink action="#{loginBean.toPageHome()}" class="btnMenuScroll" id="publicar">
+                    <h:commandLink action="#{postar.postar()}" class="btnMenuScroll" id="publicar">
                         <i class="icon fas fa-cloud-upload-alt"></i>
                         <p>Publicar</p>
                     </h:commandLink>
@@ -47,34 +43,28 @@
                         <i class="icon fas fa-eraser"></i>
                         <p>Apagar</p>
                     </h:commandLink>
-                    <h:commandLink class="btnMenuScroll" id="cancelar" action="#{criarPost.cancelarPostagem()}">
+                    <h:commandLink class="btnMenuScroll" id="cancelar" action="#{redirect.home()}">
                         <i class="icon fas fa-times"></i>
                         <p>Cancelar</p>
                     </h:commandLink>
                 </div>
-
+                
+                <p:messages autoUpdate="true"/>
+                
                 <div class="container-textEditor">
 
 
 
                     <div class="form-click" id="form-titulo">
                         <p:outputLabel styleClass="input-block" value="Digite o titulo da postagem"/>
-                        <p:inputText required="false" />
-                    </div>
-                    <div class="form-click" id="form-marcadores">
-        <p:selectOneMenu id="console" >
-            <f:selectItem itemLabel="Categoria 1" itemValue="" />
-            <f:selectItem itemLabel="Categoria 2" itemValue="Xbox One" />
-            <f:selectItem itemLabel="Categoria 3" itemValue="PS4" />
-            <f:selectItem itemLabel="Categoria 4" itemValue="Wii U" />
-        </p:selectOneMenu>
- 
-                    </div>
-                    <div class="form-click" id="form-fotoDeCapa">
-                        <p:fileUpload  required="false" mode="simple" label="Escolher imagem do computador" skinSimple="false"/>
+                        <p:inputText id="titulo" value="#{postar.postagem.titulo}" required="false" />
                     </div>
 
-                    <p:textEditor id="campo-texto" widgetVar="editor1" value="#{criarPost.text}"/>
+                    <div class="form-click" id="form-fotoDeCapa">
+                        <h:inputFile value="#{postar.file}"/>
+                    </div>
+
+                    <p:textEditor id="campo-texto" widgetVar="editor1" value="#{postar.conteudoBase64}"/>
 
                 </div>
             </h:form>
@@ -85,23 +75,19 @@
 
     <script>
         let $titulo = document.getElementById("titulo");
-        let $marcadores = document.getElementById("marcadores");
         let $fotoDaCapa = document.getElementById("fotoDeCapa");
         let $publicar = document.getElementById("publicar");
         let $cancelar = document.getElementById("cancelar");
 
         let $formTitulo = document.getElementById("form-titulo");
-        let $formMarcadores = document.getElementById("form-marcadores");
         let $formFotoDaCapa = document.getElementById("form-fotoDeCapa");
 
         function zerarTudo() {
             $formTitulo.style.display = 'none';
-            $formMarcadores.style.display = 'none';
             $formFotoDaCapa.style.display = 'none';
         }
 
         $formTitulo.style.display = 'none';
-        $formMarcadores.style.display = 'none';
         $formFotoDaCapa.style.display = 'none';
 
 
@@ -109,11 +95,6 @@
             console.log('#{pato.nome}');
             zerarTudo();
             $formTitulo.style.display = 'flex';
-        });
-
-        $marcadores.addEventListener('click', function () {
-            zerarTudo();
-            $formMarcadores.style.display = 'flex';
         });
 
         $fotoDaCapa.addEventListener('click', function () {
@@ -130,8 +111,19 @@
 
         });
         
-        // add style hashtag input
         
+        
+        let texto = document.querySelector('.ql-editor').textContent;
+        let arrayMatch = texto.match(/( .?#[^#]{1,15} )/g);
+        #{postar.setRegex(arrayMatch[0])}
+        
+        
+        
+        
+        
+        
+        // add style hashtag input
+        /*
         var textoNaoFormatado = document.querySelector('#j_idt679\\:j_idt681 > input:nth-child(3)').value;
         
         
@@ -163,7 +155,7 @@
             }); 
             
         }, false);
-
+*/
     </script>
 </html>
 

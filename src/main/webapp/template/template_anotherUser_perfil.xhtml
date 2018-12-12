@@ -8,25 +8,27 @@
     <h:head>
         <link rel="icon" href="/resources/images/blogy_1.png" />
         <meta name="viewport" content="initial-scale=1, maximum-scale=1"></meta>
-        <title>#{perfi}</title>
+        <title>#{anotherPerfil.usuarioView.nome}</title>
         <h:outputStylesheet name="./css/oPerfil.css"/>
         <h:outputStylesheet name="./css/IncludeHeaderPrincipal.css"/>
 
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous"></link>
     </h:head>
     <h:body>
+
         <ui:insert name="top">
             <ui:include src="/include/include_menuHeaderMain.xhtml"/>
         </ui:insert>
 
         <ui:insert name="content" class="container">
+            #{anotherPerfil.init()}
             <div class="container-perfil">
                 <div class="block-capa">
                     <p:commandLink class="block-fp">
-                         <h:graphicImage class="block-fp-foto" style="object-fit: cover;" value="/resources/images/perfil.jpg" />
+                        <h:graphicImage class="block-fp-foto" style="object-fit: cover;" value="/resources/images/perfil.jpg" />
                     </p:commandLink>
-                    <p:commandButton value="adicionar"/>
-                    <p:outputLabel class="title-perfil" value="Joel Henrique Silva Santos"/>
+                    <p:commandButton action="#{anotherPerfil.acaoAmigo()}" value="#{anotherPerfil.msgAddAmigo()}"/>
+                    <p:outputLabel class="title-perfil" value="#{anotherPerfil.usuarioView.nome}"/>
                 </div>
                 <div class="menu-scroll-perfil">
                     <div id="btn_home" class="btn-interacoes">
@@ -40,7 +42,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <h:form rendered="true" class="timeline">
                 <div id="home" class="article-container">
                     <div class="article">
@@ -52,9 +54,6 @@
                                         #{anotherPerfil.nomeAutorPorId(postVar.idAutor)}
                                         <f:param name="perfil" value="#{postVar.idAutor}"/>
                                     </p:link>
-                                </div>
-                                <div class="button-command container-acoes-perfil">
-                                    <h:commandLink  action="#{anotherPerfil.favoritarPost()}"><i class="fas fa-star"></i></h:commandLink>
                                 </div>
                             </div>
                             <p:link outcome="/page/post.xhtml" class="foto-capa">
@@ -68,7 +67,7 @@
                         </p:dataScroller>
                     </div>
                 </div>
- 
+
                 <div id="amigos" class="article-container">
                     <div class="article">
                         <p:dataScroller value="#{anotherPerfil.meusAmigos()}" var="user" chunkSize="10" class="post">
@@ -77,14 +76,11 @@
                                 <div class="meta-info-nome">
                                     <p:commandLink  class="nome" action="#{homeBean.toPerfil()}">#{user.nome}</p:commandLink>
                                 </div>
-                                <div class="button-command container-acoes-perfil">
-                                    <h:commandLink action="#{anotherPerfil.addAmizade()}"><i class="fas fa-user-plus"></i></h:commandLink>
-                                </div>
                             </div>
                         </p:dataScroller>
                     </div>
                 </div>
-                
+
                 <div id="favoritos" class="article-container">
                     <div class="article">
                         <p:dataScroller value="#{anotherPerfil.postFavoritos()}" var="postVar" chunkSize="20" class="post">
@@ -95,9 +91,6 @@
                                         #{anotherPerfil.nomeAutorPorId(postVar.idAutor)}
                                         <f:param name="perfil" value="#{postVar.idAutor}"/>
                                     </p:link>
-                                </div>
-                                <div class="button-command container-acoes-perfil">
-                                    <h:commandLink  action="#{anotherPerfil.favoritarPost()}"><i class="fas fa-star"></i></h:commandLink>
                                 </div>
                             </div>
                             <p:link outcome="/page/post.xhtml" class="foto-capa">
@@ -112,46 +105,45 @@
                     </div>
                 </div>
             </h:form>
-            
         </ui:insert>
-    <script>
-       
-        let $btn_home = document.getElementById("btn_home");
-        let $btn_amigos = document.getElementById("btn_amigos");
-        let $btn_favoritos = document.getElementById("btn_favoritos");
-        
-        let $home = document.getElementById("home");
-        let $amigos = document.getElementById("amigos");
-        let $favoritos = document.getElementById("favoritos");
+        <script>
 
-        
-        function zerarTudo() {
-            $home.style.display = 'none';
+            let $btn_home = document.getElementById("btn_home");
+            let $btn_amigos = document.getElementById("btn_amigos");
+            let $btn_favoritos = document.getElementById("btn_favoritos");
+
+            let $home = document.getElementById("home");
+            let $amigos = document.getElementById("amigos");
+            let $favoritos = document.getElementById("favoritos");
+
+
+            function zerarTudo() {
+                $home.style.display = 'none';
+                $amigos.style.display = 'none';
+                $favoritos.style.display = 'none';
+            }
+
+
             $amigos.style.display = 'none';
             $favoritos.style.display = 'none';
-        }
 
 
-        $amigos.style.display = 'none';
-        $favoritos.style.display = 'none';
+            $btn_home.addEventListener('click', function () {
+                zerarTudo();
+                $home.style.display = 'flex';
+            });
 
+            $btn_amigos.addEventListener('click', function () {
+                zerarTudo();
+                $amigos.style.display = 'flex';
+            });
 
-        $btn_home.addEventListener('click', function () {
-            zerarTudo();
-            $home.style.display = 'flex';
-        });
+            $btn_favoritos.addEventListener('click', function () {
+                zerarTudo();
+                $favoritos.style.display = 'flex';
+            });
 
-        $btn_amigos.addEventListener('click', function () {
-            zerarTudo();
-            $amigos.style.display = 'flex';
-        });
-
-        $btn_favoritos.addEventListener('click', function () {
-            zerarTudo();
-            $favoritos.style.display = 'flex';
-        });
-
-    </script>
+        </script>
     </h:body>
 </html>
 

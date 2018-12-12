@@ -1,0 +1,36 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+}
+
+.container {
+    background: #2196F3;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.erro-mensagem {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.erro-descricao {
+    color:#FFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.erro-mensagem {
+    width: 50vw;
+    font-size: 90px;
+    color:#FFF;
+    font-weight: 700;
+    height: 80px;
+}

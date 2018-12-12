@@ -15,8 +15,6 @@ public class HashTagEntity implements Serializable {
     private Long id;
     private String nome;
     private int quantidade;
-    @Temporal(javax.persistence.TemporalType.DATE)
-    private Calendar dataCriacao;
 
     public Long getId() {
         return id;
@@ -42,14 +40,5 @@ public class HashTagEntity implements Serializable {
         this.quantidade = quantidade;
     }
 
-    public Calendar getDataCriacao() {
-        return dataCriacao;
-    }
-
-    public void setDataCriacao(Calendar dataCriacao) {
-        this.dataCriacao = dataCriacao;
-    }
-
-    
 
 }

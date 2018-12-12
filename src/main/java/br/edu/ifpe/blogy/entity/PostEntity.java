@@ -5,6 +5,7 @@
  */
 package br.edu.ifpe.blogy.entity;
 
+import com.mysql.jdbc.Blob;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -38,7 +39,7 @@ public class PostEntity implements Serializable {
     private List<String> hashtags;
 
     public PostEntity() {
-        this.titulo = "Sem titulo";
+        this.titulo = "";
         this.fotoCapa = "/resources/images/semfoto.jpg";
         this.curtidasNegativas = 0;
         this.curtidasPositivas = 0;
@@ -110,6 +111,7 @@ public class PostEntity implements Serializable {
     public void setCurtidasPositivas(int curtidasPositivas) {
         this.curtidasPositivas = curtidasPositivas;
     }
+
     
     
     

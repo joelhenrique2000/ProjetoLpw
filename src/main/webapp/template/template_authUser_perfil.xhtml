@@ -8,7 +8,7 @@
     <h:head>
         <link rel="icon" href="/resources/images/blogy_1.png" />
         <meta name="viewport" content="initial-scale=1, maximum-scale=1"></meta>
-        <title>Joel Henrique</title>
+        <title>#{loginUsuario.usuario.nome}</title>
         <h:outputStylesheet name="./css/oPerfil.css"/>
         <h:outputStylesheet name="./css/IncludeHeaderPrincipal.css"/>
 
@@ -25,7 +25,7 @@
                     <p:commandLink class="block-fp">
                          <h:graphicImage class="block-fp-foto" style="object-fit: cover;" value="/resources/images/perfil.jpg" />
                     </p:commandLink>
-                    <p:outputLabel class="title-perfil" value="Joel Henrique Silva Santos"/>
+                    <p:outputLabel class="title-perfil" value="#{loginUsuario.usuario.nome}"/>
                 </div>
                 <div class="menu-scroll-perfil">
                     <div id="btn_home" class="btn-interacoes">
@@ -50,14 +50,14 @@
                             <div class="meta-info-perfil">
                                 <h:graphicImage class="foto" value="#{authPerfil.fotoAutorPorId(postVar.idAutor)}" />
                                 <div class="meta-info-nome">
-                                    <p:link class="nome" outcome="/anotherUser/perfil.xhtml">
+                                    <p:link class="nome">
                                         #{authPerfil.nomeAutorPorId(postVar.idAutor)}
-                                        <f:param name="perfil" value="#{postVar.idAutor}"/>
                                     </p:link>
                                 </div>
+                              
                                 <div class="button-command container-acoes-perfil">
-                                    <h:commandLink style="margin-right: 10px" action="#{authPerfil.editPost()}"><i class="fas fa-edit"></i></h:commandLink>
-                                    <h:commandLink action="#{authPerfil.deletePost()}"><i class="fas fa-trash-alt"></i></h:commandLink>
+                                    <h:commandLink style="margin-right: 10px" action="#{editarPost.redirect(postVar)}"><i class="fas fa-edit"></i></h:commandLink>
+                                    <h:commandLink action="#{authPerfil.deletarPost(postVar.id)}"><i class="fas fa-trash-alt"></i></h:commandLink>
                                 </div>
                             </div>
                             <p:link outcome="/page/post.xhtml" class="foto-capa">
@@ -81,7 +81,7 @@
                                     <p:commandLink  class="nome" action="#{homeBean.toPerfil()}">#{user.nome}</p:commandLink>
                                 </div>
                                 <div class="button-command container-acoes-perfil">
-                                    <h:commandLink style="margin-right: 10px" action="#{authPerfil.desfazerAmizade()}"><i class="fas fa-user-minus"></i></h:commandLink>
+                                    <h:commandLink style="margin-right: 10px" action="#{authPerfil.desfazerAmizade(user)}"><i class="fas fa-user-minus"></i></h:commandLink>
                                 </div>
                             </div>
                         </p:dataScroller>
@@ -90,7 +90,7 @@
                 
                 <div id="favoritos" class="article-container">
                     <div class="article">
-                        <p:dataScroller value="#{anotherPerfil.postFavoritos()}" var="postVar" chunkSize="20" class="post">
+                        <p:dataScroller value="#{authPerfil.postFavoritos()}" var="postVar" chunkSize="20" class="post">
                             <div class="meta-info-perfil">
                                 <h:graphicImage class="foto" value="#{principal.fotoAutorPorId(postVar.idAutor)}" />
                                 <div class="meta-info-nome">
@@ -100,7 +100,7 @@
                                     </p:link>
                                 </div>
                                 <div class="button-command container-acoes-perfil">
-                                    <h:commandLink style="margin-right: 10px"  action="#{authPerfil.desfavoritarPost()}"><i class="fas fa-minus"></i></h:commandLink>
+                                    <h:commandLink style="margin-right: 10px"  action="#{authPerfil.desfavoritarPost(postVar.id)}"><i class="fas fa-minus"></i></h:commandLink>
                                 </div>
                             </div>
                             <p:link outcome="/page/post.xhtml" class="foto-capa">
